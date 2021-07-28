@@ -1,0 +1,101 @@
+run_method <- function(methodpath, #an absolute path to the method file location
+                       samplename='unknown', #used just for standard output notifications
+                       sampleposition=0){  #Used if the autosampler has to look up a position.
+  
+  #Load method.
+  method <- parse_method(methodpath)
+  collecteddata <- 0
+  
+  #If autosampler needed, load position coordinate information. 
+  if('AS' %in% method$SEQUENCE$device){
+    locations <- read.csv(method$LOCATIONS, sep='', strip.white = TRUE, blank.lines.skip=TRUE, comment.char='#')
+  }
+  
+  #Grab start time, in seconds.
+  starttime <- as.numeric(Sys.time())
+  
+  #Flag for whether a sequence step has been completed
+  method$SEQUENCE$completed <- 0
+  
+  # #Check if serial connections exist and are active.
+  # {
+  # if('AS' %in% method$device){
+  #   if(!exists(serialconnections$AS)){
+  #     error('Method requires autosampler, but no serial connection to autosampler exists.')
+  #   }
+  #   if(!serial::isOpen(serialconnections$AS)){
+  #     error('The serial connection to the autosampler is closed.') 
+  #   }
+  # }
+  # if('LIA' %in% method$device){
+  #   if(!exists(serialconnections$AS)){
+  #     error('Method requires liaison, but no serial connection to liaison exists.')
+  #   }
+  #   if(!serial::isOpen(serialconnections$AS)){
+  #     error('The serial connection to the liaison is closed.') 
+  #   }
+  # }
+  # if('EA' %in% method$device){
+  #   if(!exists(serialconnections$AS)){
+  #     error('Method requires EA, but no serial connection to EA exists.')
+  #   }
+  #   if(!serial::isOpen(serialconnections$AS)){
+  #     error('The serial connection to the EA is closed.') 
+  #   }
+  # }
+  # }
+  
+  
+  #Iterate while there are uncompleted steps in the method.
+  while(0 %in% method$SEQUENCE$completed) {
+   
+    #Allows another program to kill method sequence by creating killsignal.dat
+     if(file.exists('./Control/killsignal.dat')){
+       file.remove('./Control/killsignal.dat')
+       error('Method sequence KILLED by external control.')
+       }
+    
+    #Insert code to read serial buffers here. 
+    serialin=list()
+    serialin$AS <- ''
+    serialin$LIA <- ''
+    serialin$EA <- ''
+    
+    
+    #Determine index of next step. 
+    nextstep <- which(method$SEQUENCE$completed==0)[1]
+    #See if it's time to run the next step yet. 
+    if((as.numeric(Sys.time())-starttime)<= method$SEQUENCE$t[nextstep]){
+      
+      if(method$SEQUENCE$device[nextstep]=='AS'){
+        #Formulate gcode command to send to AS
+        serialout <- translate_to_AS_gcode(command = method$SEQUENCE[nextstep,], locations=locations, sampleposition=sampleposition, method=method)
+        #Send it.
+        serial::write.serialConnection(serialconnections$AS, serialout)
+        #Set step state to complete. 
+        method$SEQUENCE$completed[nextstep] <- 1
+      } else if(method$SEQUENCE$device[nextstep]=='PC'){
+        PCdone <- handle_PC_task(command = method$SEQUENCE[nextstep,], samplename=samplename, sampleposition=sampleposition, serialin=serialin)
+        if(PCdone==TRUE){
+          method$SEQUENCE$completed[nextstep] <- 1
+        }
+      } else if (method$SEQUENCE$device[nextstep]=='SHM') {
+        print ('No Shimadzu commands implemented yet')
+        method$SEQUENCE$completed[nextstep] <- 1
+      } else if (method$SEQUENCE$device[nextstep]=='PIC') {
+        print ('No Picarro commands implemented yet')
+        method$SEQUENCE$completed[nextstep] <- 1
+      } else if (method$SEQUENCE$device[nextstep]=='EA') {
+        print ('No EA commands implemented yet')
+        method$SEQUENCE$completed[nextstep] <- 1
+      } else if (method$SEQUENCE$device[nextstep]=='LIA') {
+        print ('No liaison commands implemented yet')
+        method$SEQUENCE$completed[nextstep] <- 1
+      }
+    }
+    
+  }
+  
+  print(paste(Sys.time(), samplename, 'from', sampleposition, 'processed by method', method$METHODNAME))
+  return(collecteddata)
+}

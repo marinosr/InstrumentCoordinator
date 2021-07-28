@@ -1,0 +1,8 @@
+#Fill in a sample list according to this template. ID and name are optional but using one of the fields is obviously recommended. Comment is optional. 
+#Position is required if using an autosampler.
+#The method field is required.
+#Timestamp is filled in automatically when the software runs your sample.  
+
+ID, name, position, method, timestamp, comment
+1, test1, 1001, ./Methods/Method-TEMPLATE.met,,
+2, test2, 1002, ./Methods/Method-TEMPLATE.met,,

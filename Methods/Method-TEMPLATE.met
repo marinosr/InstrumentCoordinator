@@ -1,0 +1,32 @@
+#Generic method file for customization, which is parsed by parse_method() and then run by run_method().
+#27 July 2021, Richard Marinos
+
+#All methods must have a section labeled ***SETUP*** which contains global variables to be used during the method execution and a ***SEQUENCE*** section that directs the various devices to do what they need tyo do at various times. 
+#Any text after a hashtag on a line is ignored. 
+
+
+***SETUP***
+
+METHODNAME=Template #Put your initials here. 
+
+#If you use AS as a device you will need to include these specifications. 
+MAXSYRINGEVOL=2 #units of ml
+MAXSYRINGESTROKE=50 #units of mm
+LOCATIONS=./Methods/Locations-AS.csv #XYZ coordinates of positional commands
+
+#If you are using the Shimadzu GC, you need to specify this. 
+GCSOLENOIDPIN = 33
+
+
+
+***SEQUENCE***
+#This gets parsed into a CSV, so you must ensure the proper # of columns per line by using commas, even if a value doesn't apply. See trailing comma on first example line for further understanding this. 
+#device = AS (autosampler), PC (tell computer running this code to do a task), LI (liaison), EA (future elemental analyzer)
+#t = time in seconds, if all set to 0 events will happen as fast as possible
+#command = a command to be parsed by run_method()
+#arguments = optional numeric arguments that get used by a particular command
+
+#Header for the CSV, do not delete the following line...
+device, t, command, argument
+AS,0, HOME,                  #Home the autosampler
+PC,0, PAUSE, 3               #Pause the PC for 3 seconds

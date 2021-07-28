@@ -1,0 +1,4 @@
+BatchFile,LoadBatch,Running,CurrentSample,MoveToSample, Exit
+./Batches/Template2.csv,1,0,1,0,0
+
+
