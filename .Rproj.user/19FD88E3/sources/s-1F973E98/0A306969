@@ -1,0 +1,24 @@
+{
+    "id": "0A306969",
+    "path": "~/InstrumentCoordinator/Source/parse_method.R",
+    "project_path": "Source/parse_method.R",
+    "type": "r_source",
+    "hash": "2309604566",
+    "contents": "",
+    "dirty": false,
+    "created": 1627408362411.0,
+    "source_on_save": false,
+    "relative_order": 2,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1627407713,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1627407713,
+    "read_only": false,
+    "read_only_alternatives": []
+}

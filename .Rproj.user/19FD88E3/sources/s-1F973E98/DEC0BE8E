@@ -1,0 +1,26 @@
+{
+    "id": "DEC0BE8E",
+    "path": "~/InstrumentCoordinator/Methods/Method-GC_2ml_AtmPress.met",
+    "project_path": "Methods/Method-GC_2ml_AtmPress.met",
+    "type": "text",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1627408373298.0,
+    "source_on_save": false,
+    "relative_order": 5,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "9,19",
+        "scrollLine": "0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1627409629,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1627409629680,
+    "read_only": false,
+    "read_only_alternatives": []
+}

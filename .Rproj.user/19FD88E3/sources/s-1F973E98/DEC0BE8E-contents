@@ -1,0 +1,44 @@
+#Autosampler sequence for providing 2ml sample from vials @ atmospheric pressure into Shimadzu GC
+#This method uses 2.5ml of dilution gas to overpressurize vials so that a sample may be withdrawn. 
+#by Richard Marinos 2021
+
+
+***SETUP***
+METHODNAME=2ml GC Injection with vials at atmospheric pressure. (2.5 ml dilution gas added.)
+MAXSYRINGEVOL=2 #ml
+MAXSYRINGESTROKE=50 #mm
+LOCATIONS=./Methods/Locations-AS.csv #XYZ coordinates of positional commands
+GCSOLENOIDPIN=33
+
+***SEQUENCE***
+#Devices = AS (autosampler), PC (tell computer running this code to do a task)
+#t = time in seconds, if all set to 0 events will happen as fast as possible
+#command = a command to be parsed by run_method()
+#arguments = optional numeric arguments that get used by a particular command
+
+device, t, command, argument
+AS,0, HOME,                  #Home the autosampler
+AS,0, SYRINGEVOL, 0          #Empty syringe if not already done
+AS,0, DILUTION,              #Put needle in dilution gas port
+AS,0, SYRINGEVOL, 2          #Draw 2ml of dilution gas into syringe.
+AS,0, ABOVEDILUTION,         #Lift syringe out of dilution gas port
+AS,0, SYRINGEVOL, 0          #Eject dilution gas (to rinse syringe)
+AS,0, DILUTION,              #Put needle in dilution gas port
+AS,0, SYRINGEVOL, 2.5        #Draw 2.5ml of dilution gas into syringe.
+AS,0, SAMPLE,                #Put needle in sample vial (specified by sample list)
+AS,0, SYRINGEVOL, 0          #Inject dilution gas into sample vial.
+AS,0, SYRINGEVOL, 1.5        #Draw 1.5ml of gas back into syringe to mix
+AS,0, SYRINGEVOL, 0          #Push back into vial.
+AS,0, SYRINGEVOL, 1.5        #Draw 1.5ml of gas back into syringe to mix
+AS,0, SYRINGEVOL, 0          #Push back into vial.
+AS,0, SYRINGEVOL, 2          #Draw up final sample.
+AS,0, GCSOLENOID, 1          #Exhaust sample loop purge gas flow.
+AS,0, GCINJECTION,           #Move to GC septum nut
+AS,0, SYRINGEVOL, 0          #Inject sample
+AS,0, WAITCOMPLETE,          #Give autosampler command to wait for all moves to complete
+AS,0, PRINTREADY,            #Send command to computer that sample is ready for analysis
+PC,0, ASWAITREADY,           #Wait for ready signal from autosampler
+SHM,0, GCSTART,              #Control Shimadzu software to start run
+PC,0, PAUSE, 3               #Pause 3s for GC to switch to inject position
+AS,0, GCSOLENOID, 0          #Restart purge gas flow
+AS,0, REARHOME,              #Move sample needle out of the way. 
