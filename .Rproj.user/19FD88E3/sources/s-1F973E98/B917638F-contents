@@ -1,2 +1,2 @@
-"","X.3","X.2","X.1","X","BatchFile","LoadBatch","Running","CurrentSample","NextSample","FinishCurrentThenStop","Kill"
-"1",1,1,1,1,"C:/Users/Public/InstrumentCoordinator/Batches/Template - Copy.csv",1,0,1,NA,0,1
+"","X","BatchFile","LoadBatch","Running","CurrentSample","NextSample","FinishCurrentThenStop","Kill"
+"1",1,"C:/Users/Public/InstrumentCoordinator/Batches/Template - Copy.csv",1,0,1,NA,0,0

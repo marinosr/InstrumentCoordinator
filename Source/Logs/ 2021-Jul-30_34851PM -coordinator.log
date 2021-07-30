@@ -1,0 +1,30 @@
+Instrument Coordinator v.0.1
+by Richard Marinos, 2021
+GNU GPL v.3.0
+----------------------------GUI 2021-07-30 15:20:06 : Start run requested.
+
+GUI 2021-07-30 15:20:50 : Start run requested.
+
+GUI 2021-07-30 15:20:54 : Start run requested.
+
+GUI 2021-07-30 15:20:52 : Start run requested.
+
+GUI 2021-07-30 15:24:15 : New batch table loaded at  C:/Users/Public/InstrumentCoordinator/Batches/Template - Copy.csv
+
+GUI 2021-07-30 15:24:23 : Start run.
+
+GUI 2021-07-30 15:24:26 : Stop after current sample.
+
+GUI 2021-07-30 15:24:28 : Start run.
+
+GUI 2021-07-30 15:24:30 : Stop after current sample.
+
+GUI 2021-07-30 15:24:37 : Open sample table for editing, stop run after current sample.
+
+GUI 2021-07-30 15:24:51 : Kill immediately.
+
+GUI 2021-07-30 15:25:14 : Start run.
+
+GUI 2021-07-30 15:27:56 : Open sample table for editing. DO NOT edit completed/running samples with timestamps. 
+
+GUI 2021-07-30 15:30:05 : Open sample table for editing. DO NOT edit completed/running samples with timestamps. 
