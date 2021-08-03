@@ -3,7 +3,7 @@
     "path": "~/InstrumentCoordinator/Source/parse_method.R",
     "project_path": "Source/parse_method.R",
     "type": "r_source",
-    "hash": "2309604566",
+    "hash": "1370740473",
     "contents": "",
     "dirty": false,
     "created": 1627408362411.0,
@@ -11,14 +11,16 @@
     "relative_order": 2,
     "properties": {
         "source_window_id": "",
-        "Source": "Source"
+        "Source": "Source",
+        "cursorPosition": "51,1",
+        "scrollLine": "15"
     },
     "folds": "",
-    "lastKnownWriteTime": 1627407713,
+    "lastKnownWriteTime": 1627995759,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1627407713,
+    "last_content_update": 1627995759541,
     "read_only": false,
     "read_only_alternatives": []
 }

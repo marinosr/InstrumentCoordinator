@@ -1,4 +1,5 @@
 parse_method <- function(methodpath) {
+  tryCatch({
   #Wrap everything in warning suppression, due to some spurious NA test warnings.
   #This is dangerous, maybe should change.
   methodlist <- suppressWarnings({ 
@@ -40,8 +41,13 @@ parse_method <- function(methodpath) {
     
     #Parse sequence into data.frame
     methodlist$SEQUENCE <- read.csv(text=paste(b[(which(b=='***SEQUENCE***')+1):length(b)], collapse='\n'))
-    methodlist
   })
   
   return(methodlist)
+  },
+  
+  error=function(cond){write_log('BAK', paste('Error in parse_method() when parsing method:', methodpath, '\n Specifically:', cond, '\n Check the syntax of your method file.'))
+    return(NULL)}
+)
 }
+

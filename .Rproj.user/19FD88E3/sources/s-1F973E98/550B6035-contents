@@ -11,21 +11,21 @@ translate_to_AS_gcode() <- function(command, locations, sampleposition, method){
     command$argument <- sampleposition
   }
   
-  #Match coordinates to command and argument, or just command if no argument is present in sequence
+  #Match coordinates to command and argument i, or just command if no argument is present in sequence
   if(command$command %in% locations$command){
     if(!is.na(command$argument)){
       if(dim(locations[locations$argument == command$argument & locations$command == command$command,])[1]>0) {
         coordinates <- locations[locations$argument == command$argument & locations$command == command$command,]
-    } else {
-      error(paste('Command/argument combination is not validly specified in locations:', command$command, ',', command$argument))
-    }
+      } else {
+        write_log(paste('Error in translate_to_AS_gcode(): Command/argument combination is not validly specified in locations table:', command$command, ',', command$argument))
+      }
     } else {
       possiblecoordinates <- locations[locations$argument==command$argument]
       if(dim(possiblecoordinates)[1]>1) {
-        error(paste('No argument specified for command, and locations table lookup expects an argument:', command$command))
-      }
+        write_log(paste('Error in translate_to_AS_gcode(): Multiple locations in lookup table match this command:', command$command, 'and an argument must be specified to pick one.'))
+      } else {
       coordinates <- locations[locations$argument==command$argument]
-      
+      }
     }
   }
   
@@ -44,10 +44,8 @@ translate_to_AS_gcode() <- function(command, locations, sampleposition, method){
                         )
   }
   
-  if(is.null(serialout)) {
-    error(paste("Autosampler command not correctly parsed:", command$command, command$argument))
-  }
-  
+if(is.null(serialout)){
+  write_log('BAK', paste('Error in translate_to_AS_gcode(): Command', command, 'not recognized.' ))
+}
   return(serialout)
-  
 }

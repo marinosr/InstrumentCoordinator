@@ -1,11 +1,18 @@
 run_method <- function(methodpath, #an absolute path to the method file location
-                       samplename='unknown', #used just for standard output notifications
-                       sampleposition=0){  #Used if the autosampler has to look up a position.
+                       serialconnections, #List of serial connections as initialized by run_batch()
+                       sampleposition=0, #Argument used if AS is being used, for sample # lookup. 
+                       verbose=0){  #Used if the autosampler has to look up a position.
   
   #Load method.
   method <- parse_method(methodpath)
-  collecteddata <- 0
+  if(is.null(method)){ #Return error flag to run_batch() if method can't be parsed. 
+    return(1)
+  }
+  #Immediate killswitch triggered by the creation of killswitch.dat (Note: The Kill flag in BatchControl.dat is only used by the GUI.)
   killflag <- 0
+  errorflag <- 0
+  samplestatus <- 0
+  
   
   #If autosampler needed, load position coordinate information. 
   if('AS' %in% method$SEQUENCE$device){
@@ -48,22 +55,28 @@ run_method <- function(methodpath, #an absolute path to the method file location
   
   
   #Iterate while there are uncompleted steps in the method.
-  while(0 %in% method$SEQUENCE$completed) {
+  while((0 %in% method$SEQUENCE$completed) & errorflag==0) {
    
     #Allows another program to kill method sequence by creating killsignal.dat
-     if(file.exists('./Control/killsignal.dat')){
-       file.remove('./Control/killsignal.dat')
-       print('Method sequence KILLED by external control.')
-       method$SEQUENCE$completed <- 1
+     if(file.exists('./killsignal.dat')){
+       file.remove('./killsignal.dat')
+       write_log('BAK', 'Sequence killed by user request.')
+       errorflag <- 1
        killflag <- 1
+       samplestatus <- 1
        }
     
     #Insert code to read serial buffers here. 
     serialin=list()
-    serialin$AS <- ''
-    serialin$LIA <- ''
-    serialin$EA <- ''
+  
+    #If verbose logging selected, write out any received serial communication to the log.  
+    if(verbose=1){
+      mapply(function(name, command) {write_log(name, paste('Rx:',command))}, names(serialin), serialin)
+    }
     
+    
+    #Clear the serial out buffer. 
+    serialout=list()
     
     #Determine index of next step. 
     nextstep <- which(method$SEQUENCE$completed==0)[1]
@@ -72,11 +85,9 @@ run_method <- function(methodpath, #an absolute path to the method file location
       
       if(method$SEQUENCE$device[nextstep]=='AS'){
         #Formulate gcode command to send to AS
-        serialout <- translate_to_AS_gcode(command = method$SEQUENCE[nextstep,], locations=locations, sampleposition=sampleposition, method=method)
-        #Send it.
-        serial::write.serialConnection(serialconnections$AS, serialout)
-        #Set step state to complete. 
-        method$SEQUENCE$completed[nextstep] <- 1
+        serialout$AS <- translate_to_AS_gcode(command = method$SEQUENCE[nextstep,], locations=locations, sampleposition=sampleposition, method=method)
+        if(is.null(serialout$AS)){errorflag <- 1}
+        }
       } else if(method$SEQUENCE$device[nextstep]=='PC'){
         PCdone <- handle_PC_task(command = method$SEQUENCE[nextstep,], samplename=samplename, sampleposition=sampleposition, serialin=serialin)
         if(PCdone==TRUE){
@@ -84,26 +95,17 @@ run_method <- function(methodpath, #an absolute path to the method file location
         }
       } else if (method$SEQUENCE$device[nextstep]=='SHM') {
         print ('No Shimadzu commands implemented yet')
-        method$SEQUENCE$completed[nextstep] <- 1
       } else if (method$SEQUENCE$device[nextstep]=='PIC') {
         print ('No Picarro commands implemented yet')
-        method$SEQUENCE$completed[nextstep] <- 1
       } else if (method$SEQUENCE$device[nextstep]=='EA') {
-        print ('No EA commands implemented yet')
-        method$SEQUENCE$completed[nextstep] <- 1
       } else if (method$SEQUENCE$device[nextstep]=='LIA') {
         print ('No liaison commands implemented yet')
-        method$SEQUENCE$completed[nextstep] <- 1
       }
+      
+      method$SEQUENCE$completed[nextstep] <- 1
     }
-    
-  }
   
-  if(killflag == 0){
-  print(paste(Sys.time(), samplename, 'from', sampleposition, 'processed by method', method$METHODNAME, ": Complete"))
-  } else {
-  print(paste(Sys.time(), samplename, 'from', sampleposition, 'processed by method', method$METHODNAME, ": Killed by user"))
-  }
-  
-  return(collecteddata)
+  if(errorflag == 1) {samplestatus <- 1}
+  if(killflag == 1) {samplestatus <- 1}
+  return(samplestatus)
 }

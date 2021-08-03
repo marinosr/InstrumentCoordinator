@@ -3,7 +3,7 @@
     "path": "~/InstrumentCoordinator/Source/run_UI_server.R",
     "project_path": "Source/run_UI_server.R",
     "type": "r_source",
-    "hash": "2659655250",
+    "hash": "693149007",
     "contents": "",
     "dirty": false,
     "created": 1627658285641.0,
@@ -13,15 +13,15 @@
         "tempName": "Untitled1",
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "54,21",
-        "scrollLine": "32"
+        "cursorPosition": "186,38",
+        "scrollLine": "167"
     },
-    "folds": "",
-    "lastKnownWriteTime": 1627677476,
+    "folds": "9|1|18|0|\n",
+    "lastKnownWriteTime": 1628015000,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1627677476122,
+    "last_content_update": 1628015000235,
     "read_only": false,
     "read_only_alternatives": []
 }
