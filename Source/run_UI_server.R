@@ -2,15 +2,16 @@ library(shiny)
 library(DT)
 library(shinyFiles)
 library(shinyBS)
+library(processx)
 
 source('write_log.R')
 
 
 #Clears log and writes header.
 {
-file.remove('./coordinator.log')
-file.create('./coordinator.log')
-coordlog <- file('./coordinator.log', open='w')
+file.remove('../coordinator.log')
+file.create('../coordinator.log')
+coordlog <- file('../coordinator.log', open='w')
 writeLines('Instrument Coordinator v.0.1
 by Richard Marinos, 2021
 GNU GPL v.3.0
@@ -23,9 +24,9 @@ close(coordlog)
     
     #Make table and log scrolling, and make log always show bottom of log. 
     tags$style(
-      "#control {
+      "#batchtable {
             overflow: auto;
-            max-height: 50vh;
+            max-height: 40vh;
         }
       #log {
         overflow: auto;
@@ -102,29 +103,29 @@ close(coordlog)
     
     
     # Monitor changes to BatchControl.dat, and update reactive object if necessary
-    control <- reactiveFileReader(1000, session=NULL, filePath='./BatchControl.dat', readFunc=read.csv)
-    inststatus <- reactiveFileReader(1000, session=NULL, filePath='./InstrumentStatus.dat', readFunc=read.csv)
+    control <- reactiveFileReader(1000, session=NULL, filePath='../Control/Batchcontrol.dat', readFunc=read.csv)
+    inststatus <- reactiveFileReader(1000, session=NULL, filePath='../Control/InstrumentStatus.dat', readFunc=read.csv)
     
     #The observers below are for writing out desired system states to the backend, via batchcontrol.dat, so that it can respond appropriately. 
     
     #Start run observer
     StartObserver <- observeEvent(input$run, {
-      controlfile <- read.csv('./Batchcontrol.dat')
+      controlfile <- read.csv('../Control/Batchcontrol.dat')
       controlfile$Running[1] <- 1
       controlfile$FinishCurrentThenStop[1] <- 0
       controlfile$Kill[1] <- 0
       controlfile$Error[1] <- 0
-      write.csv(controlfile, './Batchcontrol.dat', row.names = FALSE)
+      write.csv(controlfile, '../Control/Batchcontrol.dat', row.names = FALSE)
       write_log('GUI', 'Start run.')
     })
     
     #Killswitch Observer
     KillObserver <- observeEvent(input$kill, {
-      controlfile <- read.csv('./Batchcontrol.dat')
+      controlfile <- read.csv('../Control/Batchcontrol.dat')
       #Kill status observed by GUI and run_batch() 
       controlfile$Kill[1] <- 1
       controlfile$Running[1] <- 0
-      write.csv(controlfile, './Batchcontrol.dat', row.names = FALSE)
+      write.csv(controlfile, '../Control/Batchcontrol.dat', row.names = FALSE)
       #Dummy file written as kill switch, observed by run_method() only.  
       write.csv(data.frame(a=1), './killswitch.dat')
       write_log('GUI','Kill immediately.')
@@ -133,27 +134,27 @@ close(coordlog)
     
     #StopAfterCurrent
     StopObserver <- observeEvent(input$stop, {
-      controlfile <- read.csv('./Batchcontrol.dat')
+      controlfile <- read.csv('../Control/Batchcontrol.dat')
       controlfile$FinishCurrentThenStop[1] <- 1
       controlfile$NextSample <- NA
-      write.csv(controlfile, './Batchcontrol.dat', row.names = FALSE)
+      write.csv(controlfile, '../Control/Batchcontrol.dat', row.names = FALSE)
       write_log('GUI','Stop after current sample.')
     })
     
     
     #Edit sample table. 
     EditObserver <- observeEvent(input$edit, {
-      controlfile <- read.csv('./Batchcontrol.dat')
+      controlfile <- read.csv('../Control/Batchcontrol.dat')
       controlfile$FinishCurrentThenStop[1] <- 1
       controlfile$NextSample <- NA
-      write.csv(controlfile, './Batchcontrol.dat', row.names = FALSE)
+      write.csv(controlfile, '../Control/Batchcontrol.dat', row.names = FALSE)
       file.show(control()$BatchFile)
       write_log('GUI',"Open batch table for editing. WARNING: Do NOT edit any timestamped samples (running/already run samples.)")
     })
     
     
     VerboseObserver <- observeEvent(input$verboselog, {
-      controlfile <- read.csv('./Batchcontrol.dat')
+      controlfile <- read.csv('../Control/Batchcontrol.dat')
       if(input$verboselog==TRUE){
         controlfile$VerboseLog[1] <- 1
         write_log('GUI',"The option of verbose logging, which provides exquisitely granular detail of all backend activities, has been activated, per a duly executed request by the user, and shall continue until such time as the user requests that it be halted.")
@@ -161,13 +162,13 @@ close(coordlog)
         controlfile$VerboseLog[1] <- 0
         write_log('GUI',"Verbose logging off.")
       }
-      write.csv(controlfile, './Batchcontrol.dat', row.names = FALSE)
+      write.csv(controlfile, '../Control/Batchcontrol.dat', row.names = FALSE)
     })
     
     #Write out log file
     SaveLogObserver <- observeEvent(input$savelog, {
-      write_log('GUI',paste0("Logfile saved as ./Logs/", gsub(' ','',gsub(':','',format(Sys.time(), "%Y-%b-%d_%X"))), '-coordinator.log'))
-      file.copy('./coordinator.log', paste0("./Logs/", gsub(' ','',gsub(':','',format(Sys.time(), "%Y-%b-%d_%X"))), '-coordinator.log'))
+      write_log('GUI',paste0("Logfile saved as ../Logs/", gsub(' ','',gsub(':','',format(Sys.time(), "%Y-%b-%d_%X"))), '-coordinator.log'))
+      file.copy('../coordinator.log', paste0("../Logs/", gsub(' ','',gsub(':','',format(Sys.time(), "%Y-%b-%d_%X"))), '-coordinator.log'))
     })
     
     #Change sample table source.
@@ -178,14 +179,14 @@ close(coordlog)
       if(length(newfile$datapath>0)){
         if(!(control()$BatchFile==newfile$datapath))
         {
-          controlfile <- read.csv('./Batchcontrol.dat')
+          controlfile <- read.csv('../Control/Batchcontrol.dat')
           controlfile$BatchFile[1] <- newfile$datapath
           controlfile$LoadBatch[1] <- 1
           controlfile$Running[1] <- 0
           controlfile$FinishCurrentThenStop[1] <- 0
           controlfile$Kill[1] <- 0
           controlfile$Complete[1] <- 0
-          write.csv(controlfile, './Batchcontrol.dat', row.names = FALSE)
+          write.csv(controlfile, '../Control/Batchcontrol.dat', row.names = FALSE)
           write_log('GUI', paste("New batch table loaded at ", newfile$datapath))
         }
       }
@@ -193,11 +194,11 @@ close(coordlog)
     
     #Skip to sample...
     GotoNextObserver <- observeEvent(input$goto, {
-      controlfile <- read.csv('./Batchcontrol.dat')
+      controlfile <- read.csv('../Control/Batchcontrol.dat')
       if(isolate(input$gotonumber) %in% 1:(dim(data())[1])){
         if(is.na(data()$timestamp[isolate(input$gotonumber)])){
           controlfile$NextSample <- isolate(input$gotonumber)
-          write.csv(controlfile, './Batchcontrol.dat', row.names = FALSE)
+          write.csv(controlfile, '../Control/Batchcontrol.dat', row.names = FALSE)
           write_log('GUI', paste("Next sample set as row #", isolate(input$gotonumber)))
         }
       }
@@ -206,7 +207,7 @@ close(coordlog)
     
     ExitObserver <- observeEvent(input$exit, {
       write_log('GUI', 'Exit')
-      file.copy('./coordinator.log', paste0("./Logs/", gsub(' ','',gsub(':','',format(Sys.time(), "%Y-%b-%d_%X"))), '-coordinator.log'))
+      file.copy('../coordinator.log', paste0("../Logs/", gsub(' ','',gsub(':','',format(Sys.time(), "%Y-%b-%d_%X"))), '-coordinator.log'))
     })
     
     
@@ -215,7 +216,7 @@ close(coordlog)
     data <- reactiveFileReader(1000, session=NULL, filePath=reactive(control()$BatchFile), readFunc=read.csv)
     
     #Monitor changes to log file (e.g. writes by backend)
-    statuslog <- reactiveFileReader(1000, session=NULL, filePath='./coordinator.log', readFunc=function(x){a <- file('./coordinator.log', open='r')
+    statuslog <- reactiveFileReader(1000, session=NULL, filePath='../coordinator.log', readFunc=function(x){a <- file('../coordinator.log', open='r')
       b <- readLines(a)
       close(a)
       return(b)})

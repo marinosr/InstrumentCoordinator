@@ -90,8 +90,10 @@ run_method <- function(methodpath, #an absolute path to the method file location
         }
       } else if(method$SEQUENCE$device[nextstep]=='PC'){
         PCdone <- handle_PC_task(command = method$SEQUENCE[nextstep,], samplename=samplename, sampleposition=sampleposition, serialin=serialin)
-        if(PCdone==TRUE){
+        if(PCdone==0){
           method$SEQUENCE$completed[nextstep] <- 1
+        } else if (PCdone==1) {
+          errorflag <- 1
         }
       } else if (method$SEQUENCE$device[nextstep]=='SHM') {
         print ('No Shimadzu commands implemented yet')

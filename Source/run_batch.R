@@ -12,6 +12,7 @@ run_batch <- function(){
   inststatus <- read.csv('./InstrumentStatus.dat')
   inststatus$Backend <- 1
   write.csv(inststatus, './InstrumentStatus.dat')
+  write_log('BAK','Sequencing backend online.')
     
   #Read in control parameters.
   control <- read.csv('./Control/BatchControl.dat', comment.char = '#')

@@ -1,4 +1,2 @@
-BatchFile,LoadBatch,Running,MoveToSample
-./Batches/Template2.csv,1,0,
-
-
+"BatchFile","LoadBatch","Running","CurrentSample","NextSample","FinishCurrentThenStop","Kill","Error","VerboseLog","Complete"
+"C:/Users/Public/InstrumentCoordinator/Batches/Template.csv",1,0,NA,NA,0,0,0,0,0
