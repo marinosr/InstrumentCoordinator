@@ -77,6 +77,7 @@ run_batch <- function(){
     
     #If running, run the method on the current sample. Write timestamp to batch table, and try to write out batch file, with error recovery.
     if(control$Running==1){
+      print(control)
       message <- paste0('Running row #', control$CurrentSample, 
                         ' (ID:',
                         batch$ID[control$CurrentSample],
@@ -117,7 +118,7 @@ run_batch <- function(){
       
       tryCatch(write.csv(batch, control$BatchFile, row.names=FALSE), 
                error=function(cond){write_log('BAK','The timestamp could for the current sample could not be written. Is the .csv open in another program? Will try again after next sample.')})
-    } else {
+    } else {getwd
     }
     
     
