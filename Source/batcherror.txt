@@ -1,0 +1,4 @@
+Error in file(file, "rt") : cannot open the connection
+Calls: run_batch -> run_method -> read.csv -> read.table -> file
+In addition: There were 50 or more warnings (use warnings() to see the first 50)
+Execution halted

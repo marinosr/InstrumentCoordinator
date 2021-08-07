@@ -1,2 +1,2 @@
 "BatchFile","LoadBatch","Running","CurrentSample","NextSample","FinishCurrentThenStop","Kill","Error","VerboseLog","Complete","Exit"
-"./Batches/Template.csv",0,0,NA,NA,0,0,0,0,1,0
+"./Batches/Template.csv",1,0,0,NA,0,0,0,0,0,0

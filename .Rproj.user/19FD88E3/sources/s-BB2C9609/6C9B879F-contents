@@ -1,0 +1,18 @@
+#Contains translations of commands (with optional arguments) to XYZ coordinates
+#Make sure to obey commas for unused columns like argument and comment. 
+
+command, argument, x, y, z, comment
+
+BACKHOME,,         0,500,0,   this lets you move the head out of the way for easy access to samples
+
+ABOVEDILUTION,,    0,0,0,     this hovers the needle over the dilution gas port, for rinsing samples
+DILUTION,,         0,0,10,    puts needle in dilution gas septum
+
+GCINJECTION,,      10,0,10,   shimadzu injeciton port
+PICARROINJECTION,, 20,0,10,   picarro injection port
+CARRIERINJECTION,, 30,0,10,   carrier gas stream injection port
+
+SAMPLE,0,          0,500,0    dummy sample number, for manual injection, testing, etc.
+SAMPLE,1001,       60,60,20,
+SAMPLE,1002,       120,120,20,
+

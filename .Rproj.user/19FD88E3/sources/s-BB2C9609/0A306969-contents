@@ -1,13 +1,13 @@
 parse_method <- function(methodpath) {
-methodlist <- tryCatch({
-  
   #Wrap everything in warning suppression, due to some spurious NA test warnings.
   #This is dangerous, maybe should change.
     #Read method file in raw. 
     fileconn <-file(methodpath, open='r')
     rawmethod <- readLines(fileconn)
+    print(rawmethod)
     close(fileconn)
-    if(length(rawmethod)==0){
+    if(!exists(rawmethod)){
+      print('doesntexist')
       write_log('BAK', paste( "Method:", methodpath, 'not found. Check the path.'))
       return(NULL)
     }
@@ -47,13 +47,6 @@ methodlist <- tryCatch({
     methodlist$SEQUENCE <- read.csv(text=paste(b[(which(b=='***SEQUENCE***')+1):length(b)], collapse='\n'))
   
   
-  return(methodlist)
-  },
-
-  error=function(cond){write_log('BAK', paste('Error in parse_method() when parsing method:', methodpath,  '\n Specifically:', cond, '\n Check the syntax of your method file.'))
-    return(NULL)}
-)
-
   return(methodlist)
 }
 

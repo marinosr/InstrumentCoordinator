@@ -1,0 +1,29 @@
+Instrument Coordinator v.0.1
+by Richard Marinos, 2021
+GNU GPL v.3.0
+_____________________________
+BAK 2021-08-06 16:33:17 :  Sequencing backend online.
+BAK 2021-08-06 16:33:18 :  Still here
+GUI 2021-08-06 16:33:18 :  Verbose logging off.
+GUI 2021-08-06 16:33:18 :  Stopped
+BAK 2021-08-06 16:33:19 :  Still here
+GUI 2021-08-06 16:33:19 :  Stopped
+BAK 2021-08-06 16:33:20 :  Still here
+BAK 2021-08-06 16:33:21 :  Still here
+BAK 2021-08-06 16:33:22 :  Still here
+BAK 2021-08-06 16:33:23 :  Still here
+BAK 2021-08-06 16:33:24 :  Still here
+BAK 2021-08-06 16:33:25 :  Still here
+BAK 2021-08-06 16:33:26 :  Still here
+GUI 2021-08-06 16:33:27 :  Start run.
+BAK 2021-08-06 16:33:27 :  Still here
+GUI 2021-08-06 16:33:27 :  Running
+GUI 2021-08-06 16:33:50 :  Exit
+GUI 2021-08-06 16:33:51 :  Running
+GUI 2021-08-06 16:33:55 :  Stop after current sample.
+GUI 2021-08-06 16:33:56 :  Finish Current
+GUI 2021-08-06 16:33:57 :  Kill immediately.
+GUI 2021-08-06 16:33:58 :  Kill
+GUI 2021-08-06 16:33:58 :  Exit
+GUI 2021-08-06 16:33:59 :  Kill
+GUI 2021-08-06 16:34:02 :  Exit
