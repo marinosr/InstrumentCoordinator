@@ -23,30 +23,31 @@ check_serial_connections <- function(serialconns){
   
   #Statuses for all serial connected instruments should be 0 by default. 
   statuses[,c('Autosampler','Liaison','PPSys','EA')] <- 0
-  opennames <- character()
+  opennames <- ''
 
   if('AS' %in% names(serialconns)){
     if(isOpen(serialconns$AS)){
       statuses$Autosampler <- 1
-      opennnames <- c(opennames, 'AS')
+      opennames <- c(opennames, 'AS')
+
     }
   }
   if('LIA' %in% names(serialconns)){
     if(isOpen(serialconns$LIA)){
       statuses$Liaison <- 1
-      opennnames <- c(opennames, 'LIA')
+      opennames <- c(opennames, 'LIA')
     }
   }
   if('EA' %in% names(serialconns)){
     if(isOpen(serialconns$EA)){
       statuses$EA <- 1
-      opennnames <- c(opennames, 'EA')
+      opennames <- c(opennames, 'EA')
     }
   }
   if('IGA' %in% names(serialconns)){
     if(isOpen(serialconns$IGA)){
       statuses$PPSys <- 1
-      opennnames <- c(opennames, 'IGA')
+      opennames <- c(opennames, 'IGA')
     }
   }
   
@@ -64,7 +65,7 @@ read_serial_connections <- function(serialconns){
 
 write_serial_connections <- function(txmessages, serialconns){
   mapply(function(message,name,serialconnections){
-  write.serialConnection(serialconns[[names(serialconnections)==name]], message)
+  write.serialConnection(serialconnections[[which(names(serialconnections)==name)]], paste0(message,'\n'))
   }, txmessages, names(txmessages), MoreArgs=list(serialconnections=serialconns))
 }
 

@@ -29,4 +29,4 @@ GCSOLENOIDPIN = 33
 #Header for the CSV, do not delete the following line...
 device, t, command, argument
 AS,0, HOME,                  #Home the autosampler
-PC,5, PAUSE, 3               #Pause the PC for 3 seconds
+PC,20, PAUSE, 3              #Pause the PC for 3 seconds

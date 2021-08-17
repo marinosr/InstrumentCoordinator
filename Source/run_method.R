@@ -26,35 +26,14 @@ run_method <- function(methodpath, #an absolute path to the method file location
   #Flag for whether a sequence step has been completed
   method$SEQUENCE$completed <- 0
   
+  neededserial <- method$SEQUENCE$device[method$SEQUENCE$device %in% c('AS','LIA','EA', 'IGA')]
+  notfoundserial <- neededserial[!(neededserial %in% names(serialconnections))]
+  if(length(notfoundserial)>1){
+    write_log('BAK', paste('The specified method requires the devices:', notfoundserial, 'but no connections to the devices exist.'))
+    errorflag <- 1
+  }
   
-  
-  # #Check if serial connections exist and are active.
-  # {
-  # if('AS' %in% method$device){
-  #   if(!exists(serialconnections$AS)){
-  #     error('Method requires autosampler, but no serial connection to autosampler exists.')
-  #   }
-  #   if(!serial::isOpen(serialconnections$AS)){
-  #     error('The serial connection to the autosampler is closed.') 
-  #   }
-  # }
-  # if('LIA' %in% method$device){
-  #   if(!exists(serialconnections$AS)){
-  #     error('Method requires liaison, but no serial connection to liaison exists.')
-  #   }
-  #   if(!serial::isOpen(serialconnections$AS)){
-  #     error('The serial connection to the liaison is closed.') 
-  #   }
-  # }
-  # if('EA' %in% method$device){
-  #   if(!exists(serialconnections$AS)){
-  #     error('Method requires EA, but no serial connection to EA exists.')
-  #   }
-  #   if(!serial::isOpen(serialconnections$AS)){
-  #     error('The serial connection to the EA is closed.') 
-  #   }
-  # }
-  # }
+
   
   
   
@@ -71,14 +50,17 @@ run_method <- function(methodpath, #an absolute path to the method file location
     }
     
     #Insert code to read and write serial buffers here. 
-    serialin <- read_serial_connections()
+    serialin <- read_serial_connections(serialconnections)
     
     
     serialout=list()
     
     #If verbose logging selected, write out any received serial communication to the log.  
     if(verbose==1){
-      mapply(function(name, command) {write_log(name, paste('Rx:',command))}, names(serialin), serialin)
+      mapply(function(name, reply) {if(nchar(reply)>0){
+        write_log(name, paste('Rx:', name, ' - ', reply))
+        }
+        }, names(serialin), serialin)
     }
     
     
@@ -112,12 +94,14 @@ run_method <- function(methodpath, #an absolute path to the method file location
       } else if (method$SEQUENCE$device[nextstep]=='LIA') {
       }
       
+      write_serial_connections(serialout, serialconnections)
+      
       if(errorflag==0){
         method$SEQUENCE$completed[nextstep] <- 1
       }
     }
   
-    
+  Sys.sleep(.01)  
   }
   
   #If killed by user or error, throw non-zero exit status. 

@@ -99,15 +99,15 @@ run_batch <- function(){
       write_log('BAK', message)
       samplestatus <- run_method(methodpath=batch$method[control$CurrentSample], 
                                  sampleposition=ifelse(is.na(batch$position[control$CurrentSample]), 0, batch$position[control$CurrentSample]),
+                                 serialconnections=serialconns,
                                  verbose=control$VerboseLog)
-      print(paste('Sample Status', samplestatus))
       
       
       
       
       #Timestamp the result if method completed successfully. Otherwise raise error flag for the GUI. 
       if(samplestatus==0){
-        batch$timestamp[control$CurrentSample] <- Sys.time()
+        batch$timestamp[control$CurrentSample] <- as.character(Sys.time())
         write_log('BAK', paste ('Row #', control$CurrentSample, 'complete.'))
       } else if (samplestatus==1){
         #throw_error('BAK','Run stopped on error.')
