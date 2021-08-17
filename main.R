@@ -84,6 +84,8 @@ proc <- process$new(paste0(Sys.getenv('R_HOME'), '/bin/Rscript.exe'), c('--vanil
                    strong("Instrument Status:"),
                    htmlOutput('inststatus'),
                    bsTooltip('inststatus', "Status of devices connected to the instrument coordinator. The backend automatically tries to connect to devices and reports success here. "),
+                   actionButton('reconnect', 'Reconnect Serial'),
+                   bsTooltip('reconnect', "Closes and attempts to reconnect to serial devices."),
                    width=2
                    ),
       
@@ -224,6 +226,14 @@ proc <- process$new(paste0(Sys.getenv('R_HOME'), '/bin/Rscript.exe'), c('--vanil
       write.csv(controlfile, './Control/BatchControl.dat', row.names = FALSE)
       write_log('GUI', 'Exit')
       file.copy('./coordinator.log', paste0("./Logs/", gsub(' ','',gsub(':','',format(Sys.time(), "%Y-%b-%d_%X"))), '-coordinator.log'))
+      session$close()
+    })
+    
+    ExitObserver <- observeEvent(input$reconnect, {
+      controlfile <- read.csv('./Control/BatchControl.dat')
+      controlfile$ReconnectSerial <- 1
+      write.csv(controlfile, './Control/BatchControl.dat', row.names = FALSE)
+      write_log('GUI', 'Serial connections closed and reinitialized.')
     })
     
     
@@ -319,6 +329,14 @@ proc <- process$new(paste0(Sys.getenv('R_HOME'), '/bin/Rscript.exe'), c('--vanil
     
     #Log text output.
     output$log <- renderText({statuslog()}, sep='\r\n')
+    
+    #Do the same stuff as pressing the exit button, if window closed out instead. 
+    onStop(function(){
+    controlfile <- read.csv('./Control/BatchControl.dat')
+    controlfile$Exit <- 1
+    write.csv(controlfile, './Control/BatchControl.dat', row.names = FALSE)
+    write_log('GUI', 'Exit')
+    file.copy('./coordinator.log', paste0("./Logs/", gsub(' ','',gsub(':','',format(Sys.time(), "%Y-%b-%d_%X"))), '-coordinator.log'))})
     
 }
 

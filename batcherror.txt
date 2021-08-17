@@ -1,0 +1,7 @@
+Error in lapply(serialconns, close) : 
+  argument "serialconns" is missing, with no default
+Calls: run_batch -> close_serial_connections -> lapply
+In addition: Warning message:
+In read.table(file = file, header = header, sep = sep, quote = quote,  :
+  incomplete final line found by readTableHeader on './Control/BatchControl.dat'
+Execution halted

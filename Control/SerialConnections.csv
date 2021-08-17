@@ -1,0 +1,5 @@
+name, port, mode, testcommand, testresponse
+"AS","CNCA0","9600,n,8,1", 'M118 AS present', 'AS present'
+"LIA","COM10","250000,n,8,1", 'echo liaison', 'liaison'
+'IGA', 'COM11', "250000,n,8,1", "?",
+

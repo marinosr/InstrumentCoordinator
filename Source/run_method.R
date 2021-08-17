@@ -57,6 +57,7 @@ run_method <- function(methodpath, #an absolute path to the method file location
   # }
   
   
+  
   #Iterate while there are uncompleted steps in the method.
   while((0 %in% method$SEQUENCE$completed) && errorflag==0) {
     
@@ -69,8 +70,11 @@ run_method <- function(methodpath, #an absolute path to the method file location
       samplestatus <- 1
     }
     
-    #Insert code to read serial buffers here. 
-    serialin=list()
+    #Insert code to read and write serial buffers here. 
+    serialin <- read_serial_connections()
+    
+    
+    serialout=list()
     
     #If verbose logging selected, write out any received serial communication to the log.  
     if(verbose==1){
@@ -85,14 +89,20 @@ run_method <- function(methodpath, #an absolute path to the method file location
     nextstep <- which(method$SEQUENCE$completed==0)[1]
     #See if it's time to run the next step yet. 
     if((as.numeric(Sys.time())-starttime) >= method$SEQUENCE$t[nextstep]){
+      
+      #Write out method line if verbose logging enabled. 
+      if(verbose==1){
+        write_log('BAK',(paste(method$sequence[nextstep,], sep='')))
+      }
+      
       if(method$SEQUENCE$device[nextstep]=='AS'){
         #Formulate gcode command to send to AS
         serialout$AS <- translate_to_AS_gcode(command = method$SEQUENCE[nextstep,], locations=locations, sampleposition=sampleposition, method=method)
+        #If translate_to_AS_gcode() fails, it should return NULL.
         if(is.null(serialout$AS)){errorflag <- 1}
       } else if(method$SEQUENCE$device[nextstep]=='PC'){
         PCdone <- handle_PC_task(command = method$SEQUENCE[nextstep,], samplename=samplename, sampleposition=sampleposition, serialin=serialin)
         if(PCdone==0){
-          method$SEQUENCE$completed[nextstep] <- 1
         } else if (PCdone==1) {
           errorflag <- 1
         }
@@ -102,14 +112,18 @@ run_method <- function(methodpath, #an absolute path to the method file location
       } else if (method$SEQUENCE$device[nextstep]=='LIA') {
       }
       
-      method$SEQUENCE$completed[nextstep] <- 1
+      if(errorflag==0){
+        method$SEQUENCE$completed[nextstep] <- 1
+      }
     }
+  
+    
   }
   
-    if(errorflag == 1) {samplestatus <- 1}
-    if(killflag == 1) {samplestatus <- 1}
-    
+  #If killed by user or error, throw non-zero exit status. 
+  if(errorflag == 1) {samplestatus <- 1}
+  if(killflag == 1) {samplestatus <- 1}
   
-    return(samplestatus)
+  
+  return(samplestatus)
 }
-  

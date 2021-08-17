@@ -10,6 +10,7 @@ source('./Source/run_method.R')
 source('./Source/run_batch.R')
 source('./Source/throw_error.R')
 source('./Source/write_log.R')
+source('./Source/serial_commands.R')
 
 run_batch()
 

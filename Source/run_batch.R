@@ -8,12 +8,13 @@ run_batch <- function(){
   write.csv(control, './Control/BatchControl.dat', row.names=FALSE)
   
   
+  #Initialize serial connections
+  serialconns <- check_serial_connections(open_serial_connections(read.csv('./Control/serialconnections.csv')))
+  
   keepgoing <- TRUE
   
   while(keepgoing){
     
-    
-    #NEED CODE FOR SERIAL CONNECTION HERE.
     
     #Set Backend active flag.
     instruments <- read.csv('./Control/InstrumentStatus.dat')
@@ -42,6 +43,12 @@ run_batch <- function(){
     } else {
       #Otherwise just read the batch file in. (This imports the timestamps of the latest samples run.)
       batch <- read.csv(control$BatchFile, comment.char = '#', strip.white=TRUE, blank.lines.skip = TRUE)
+    }
+    
+    if(control$ReconnectSerial==1){
+      close_serial_connections()
+      serialconns <- open_serial_connections()
+      control$ReconnectSerial <- 0
     }
     
     #If there's a batch table to operate on...
@@ -124,11 +131,12 @@ run_batch <- function(){
     
     
     if(control$Exit==1){
+      close_serial_connections()
       keepgoing <- FALSE
     }
     
     #Pause 1 second to not just crank on the CPU.
-    Sys.sleep(1)
+    Sys.sleep(3)
   }
 }
 

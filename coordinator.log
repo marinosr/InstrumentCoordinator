@@ -2,13 +2,9 @@ Instrument Coordinator v.0.1
 by Richard Marinos, 2021
 GNU GPL v.3.0
 _____________________________
-BAK 2021-08-07 14:25:11 :  Sequencing backend online.
-GUI 2021-08-07 14:25:12 :  Verbose logging off.
-GUI 2021-08-07 14:25:12 :  Stopped
-GUI 2021-08-07 14:25:13 :  Stopped
-GUI 2021-08-07 14:25:17 :  Start run.
-GUI 2021-08-07 14:25:17 :  Stopped
-GUI 2021-08-07 14:25:20 :  Kill immediately.
-GUI 2021-08-07 14:25:20 :  Kill
-GUI 2021-08-07 14:25:23 :  Exit
-GUI 2021-08-07 14:25:23 :  Kill
+BAK 2021-08-17 15:21:20 :  Initializing serial connections: AS
+BAK 2021-08-17 15:21:20 :  Sequencing backend online.
+GUI 2021-08-17 15:21:21 :  Verbose logging off.
+GUI 2021-08-17 15:21:21 :  Stopped
+GUI 2021-08-17 15:21:22 :  Stopped
+GUI 2021-08-17 15:22:00 :  Exit
