@@ -1,2 +1,2 @@
 "BatchFile","LoadBatch","Running","CurrentSample","NextSample","FinishCurrentThenStop","Kill","Error","VerboseLog","ReconnectSerial","Complete","Exit"
-"C:/Users/Public/InstrumentCoordinator/Batches/Template.csv",0,0,NA,NA,0,1,0,1,0,1,1
+"./Batches/Template.csv",0,0,NA,NA,0,0,0,0,0,1,0

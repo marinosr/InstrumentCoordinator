@@ -31,7 +31,7 @@ translate_to_AS_gcode <- function(command, locations, sampleposition, method){
   
  #If coordinates successfully retreived, construct a g code command to move there. Always retracts z axis, does XY movements, then extends Z, for needle safety.  
   if(dim(coordinates)[2]>1){
-    serialout <- paste('G0 Z0', paste('G0 X', coordinates$x, ' Y', coordinates$y, sep=''), paste('G0 Z', coordinates$Z, sep=''), sep='\n')
+    serialout <- paste('G0 Z0', paste('G0 X', coordinates$x, ' Y', coordinates$y, sep=''), paste('G0 Z', coordinates$z, sep=''), sep='\n')
   } else {
  #If no coordinates retrieved, probably a special command, handled below. 
     serialout <- switch(command$command,

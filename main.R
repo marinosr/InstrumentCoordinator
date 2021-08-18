@@ -27,7 +27,7 @@ _____________________________', con=coordlog)
   close(coordlog)
 }
 
-#Starts thw backend as a separate process.
+#Starts the backend as a separate process.
 proc <- process$new(paste0(Sys.getenv('R_HOME'), '/bin/Rscript.exe'), c('--vanilla', paste0(getwd(), '/Source/backend_launcher.R'), getwd()), stderr = paste0(getwd(), '/batcherror.txt'), stdout=paste0(getwd(), '/batchout.txt'))
 
 

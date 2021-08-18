@@ -33,10 +33,6 @@ run_method <- function(methodpath, #an absolute path to the method file location
     errorflag <- 1
   }
   
-
-  
-  
-  
   #Iterate while there are uncompleted steps in the method.
   while((0 %in% method$SEQUENCE$completed) && errorflag==0) {
     

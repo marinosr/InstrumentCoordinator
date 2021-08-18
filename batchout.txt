@@ -1,57 +1,14 @@
-[1] "Conditional 2"
-[1] "Conditional 2"
-[1] "Conditional 2"
-[1] "Conditional 2"
-[1] "Conditional 2"
-[1] "Conditional 2"
-[1] "Conditional 2"
-[1] "Conditional 2"
-[1] "Conditional 2"
-[1] "Conditional 2"
                BatchFile LoadBatch Running CurrentSample NextSample
-1 ./Batches/Template.csv         0       1            NA         NA
+1 ./Batches/Template.csv         0       1             1         NA
   FinishCurrentThenStop Kill Error VerboseLog ReconnectSerial Complete Exit
-1                     0    0     0          1               0        1    0
-[1] "Running row #NA (ID:NA Name:NA) in positionNA by method NA"
-               BatchFile LoadBatch Running CurrentSample NextSample
-1 ./Batches/Template.csv         0       1            NA         NA
-  FinishCurrentThenStop Kill Error VerboseLog ReconnectSerial Complete Exit
-1                     0    0     0          1               0        1    0
-[1] "Running row #NA (ID:NA Name:NA) in positionNA by method NA"
-               BatchFile LoadBatch Running CurrentSample NextSample
-1 ./Batches/Template.csv         0       1            NA         NA
-  FinishCurrentThenStop Kill Error VerboseLog ReconnectSerial Complete Exit
-1                     0    0     0          1               0        1    0
-[1] "Running row #NA (ID:NA Name:NA) in positionNA by method NA"
-               BatchFile LoadBatch Running CurrentSample NextSample
-1 ./Batches/Template.csv         0       1            NA         NA
-  FinishCurrentThenStop Kill Error VerboseLog ReconnectSerial Complete Exit
-1                     0    0     0          1               0        1    0
-[1] "Running row #NA (ID:NA Name:NA) in positionNA by method NA"
-               BatchFile LoadBatch Running CurrentSample NextSample
-1 ./Batches/Template.csv         0       1            NA         NA
-  FinishCurrentThenStop Kill Error VerboseLog ReconnectSerial Complete Exit
-1                     0    0     0          1               0        1    0
-[1] "Running row #NA (ID:NA Name:NA) in positionNA by method NA"
-               BatchFile LoadBatch Running CurrentSample NextSample
-1 ./Batches/Template.csv         0       1            NA         NA
-  FinishCurrentThenStop Kill Error VerboseLog ReconnectSerial Complete Exit
-1                     1    0     0          1               0        1    0
-[1] "Running row #NA (ID:NA Name:NA) in positionNA by method NA"
-                                                   BatchFile LoadBatch Running
-1 C:/Users/Public/InstrumentCoordinator/Batches/Template.csv         0       1
-  CurrentSample NextSample FinishCurrentThenStop Kill Error VerboseLog
-1             1         NA                     0    0     0          1
-  ReconnectSerial Complete Exit
-1               0        0    0
+1                     0    0     0          0               0        0    0
 [1] "Running row #1 (ID:1 Name:test1) in position1001 by method ./Methods/Method-TEMPLATE.met"
-                                                   BatchFile LoadBatch Running
-1 C:/Users/Public/InstrumentCoordinator/Batches/Template.csv         0       1
-  CurrentSample NextSample FinishCurrentThenStop Kill Error VerboseLog
-1             2         NA                     0    0     0          1
-  ReconnectSerial Complete Exit
-1               0        0    0
+               BatchFile LoadBatch Running CurrentSample NextSample
+1 ./Batches/Template.csv         0       1             2         NA
+  FinishCurrentThenStop Kill Error VerboseLog ReconnectSerial Complete Exit
+1                     0    0     0          0               0        0    0
 [1] "Running row #2 (ID:2 Name:test2) in position1002 by method ./Methods/Method-TEMPLATE.met"
+[1] "Conditional 2"
 [1] "Conditional 2"
 [1] "Conditional 2"
 [1] "Conditional 2"

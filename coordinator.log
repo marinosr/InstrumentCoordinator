@@ -2,69 +2,16 @@ Instrument Coordinator v.0.1
 by Richard Marinos, 2021
 GNU GPL v.3.0
 _____________________________
-BAK 2021-08-17 16:26:49 :  Initializing serial connections: AS
-BAK 2021-08-17 16:26:49 :  Sequencing backend online.
-GUI 2021-08-17 16:26:51 :  Verbose logging off.
-GUI 2021-08-17 16:26:51 :  Stopped
-GUI 2021-08-17 16:26:52 :  Stopped
-GUI 2021-08-17 16:26:55 :  The option of verbose logging, which provides exquisitely granular detail of all backend activities, has been activated, per a duly executed request by the user, and shall continue until such time as the user requests that it be halted.
-GUI 2021-08-17 16:26:56 :  Stopped
-BAK 2021-08-17 16:27:17 :  The timestamp for the final sample in the completed batch could not be written. Was the CSV open?
-GUI 2021-08-17 16:27:37 :  Start run.
-GUI 2021-08-17 16:27:37 :  Running
-BAK 2021-08-17 16:27:38 :  Running row #NA (ID:NA Name:NA) in positionNA by method NA
-BAK 2021-08-17 16:27:38 :  Error in parse_method() when parsing method: NA 
- Specifically: Error in file(methodpath, open = "r"): invalid 'description' argument
- 
- Check the syntax of your method file.
-BAK 2021-08-17 16:27:41 :  Running row #NA (ID:NA Name:NA) in positionNA by method NA
-BAK 2021-08-17 16:27:41 :  Error in parse_method() when parsing method: NA 
- Specifically: Error in file(methodpath, open = "r"): invalid 'description' argument
- 
- Check the syntax of your method file.
-BAK 2021-08-17 16:27:45 :  Running row #NA (ID:NA Name:NA) in positionNA by method NA
-BAK 2021-08-17 16:27:45 :  Error in parse_method() when parsing method: NA 
- Specifically: Error in file(methodpath, open = "r"): invalid 'description' argument
- 
- Check the syntax of your method file.
-BAK 2021-08-17 16:27:48 :  Running row #NA (ID:NA Name:NA) in positionNA by method NA
-BAK 2021-08-17 16:27:48 :  Error in parse_method() when parsing method: NA 
- Specifically: Error in file(methodpath, open = "r"): invalid 'description' argument
- 
- Check the syntax of your method file.
-BAK 2021-08-17 16:27:51 :  Running row #NA (ID:NA Name:NA) in positionNA by method NA
-BAK 2021-08-17 16:27:51 :  Error in parse_method() when parsing method: NA 
- Specifically: Error in file(methodpath, open = "r"): invalid 'description' argument
- 
- Check the syntax of your method file.
-GUI 2021-08-17 16:27:52 :  Stop after current sample.
-GUI 2021-08-17 16:27:52 :  Finish Current
-BAK 2021-08-17 16:27:54 :  Running row #NA (ID:NA Name:NA) in positionNA by method NA
-BAK 2021-08-17 16:27:54 :  Error in parse_method() when parsing method: NA 
- Specifically: Error in file(methodpath, open = "r"): invalid 'description' argument
- 
- Check the syntax of your method file.
-GUI 2021-08-17 16:27:54 :  Stopped
-GUI 2021-08-17 16:27:57 :  New batch table loaded at  C:/Users/Public/InstrumentCoordinator/Batches/Template.csv
-GUI 2021-08-17 16:27:57 :  Stopped
-GUI 2021-08-17 16:28:00 :  Stopped
-GUI 2021-08-17 16:28:13 :  Start run.
-GUI 2021-08-17 16:28:14 :  Running
-BAK 2021-08-17 16:28:15 :  Running row #1 (ID:1 Name:test1) in position1001 by method ./Methods/Method-TEMPLATE.met
-BAK 2021-08-17 16:28:15 :  
-AS 2021-08-17 16:28:20 :  Rx: ggg
-AS 2021-08-17 16:28:22 :  Rx: ddd
-AS 2021-08-17 16:28:26 :  Rx: jjjjj
-AS 2021-08-17 16:28:28 :  Rx: eeee
-BAK 2021-08-17 16:28:35 :  
-BAK 2021-08-17 16:28:38 :  Row # 1 complete.
-BAK 2021-08-17 16:28:41 :  Running row #2 (ID:2 Name:test2) in position1002 by method ./Methods/Method-TEMPLATE.met
-BAK 2021-08-17 16:28:41 :  
-GUI 2021-08-17 16:28:42 :  Running
-BAK 2021-08-17 16:29:01 :  
-BAK 2021-08-17 16:29:04 :  Row # 2 complete.
-GUI 2021-08-17 16:29:08 :  Stopped
-GUI 2021-08-17 16:29:10 :  Kill immediately.
-GUI 2021-08-17 16:29:10 :  Kill
-GUI 2021-08-17 16:29:15 :  Exit
-GUI 2021-08-17 16:29:15 :  Exit
+BAK 2021-08-18 09:38:30 :  Initializing serial connections: AS
+BAK 2021-08-18 09:38:30 :  Sequencing backend online.
+GUI 2021-08-18 09:38:32 :  Verbose logging off.
+GUI 2021-08-18 09:38:32 :  Stopped
+GUI 2021-08-18 09:38:33 :  Stopped
+GUI 2021-08-18 09:38:43 :  Start run.
+GUI 2021-08-18 09:38:44 :  Running
+BAK 2021-08-18 09:38:46 :  Running row #1 (ID:1 Name:test1) in position1001 by method ./Methods/Method-TEMPLATE.met
+BAK 2021-08-18 09:39:09 :  Row # 1 complete.
+BAK 2021-08-18 09:39:12 :  Running row #2 (ID:2 Name:test2) in position1002 by method ./Methods/Method-TEMPLATE.met
+GUI 2021-08-18 09:39:12 :  Running
+BAK 2021-08-18 09:39:35 :  Row # 2 complete.
+GUI 2021-08-18 09:39:38 :  Stopped
