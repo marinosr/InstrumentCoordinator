@@ -13,6 +13,7 @@ run_method <- function(methodpath, #an absolute path to the method file location
   killflag <- 0
   errorflag <- 0
   samplestatus <- 0
+  commandlogged <- 0
   
   
   #If autosampler needed, load position coordinate information. 
@@ -48,9 +49,6 @@ run_method <- function(methodpath, #an absolute path to the method file location
     #Insert code to read and write serial buffers here. 
     serialin <- read_serial_connections(serialconnections)
     
-    
-    serialout=list()
-    
     #If verbose logging selected, write out any received serial communication to the log.  
     if(verbose==1){
       mapply(function(name, reply) {if(nchar(reply)>0){
@@ -70,7 +68,10 @@ run_method <- function(methodpath, #an absolute path to the method file location
       
       #Write out method line if verbose logging enabled. 
       if(verbose==1){
-        write_log('BAK',(paste(method$sequence[nextstep,], sep='')))
+        if(commandlogged == 0){
+        write_log('BAK',(paste(method$SEQUENCE[nextstep,], collapse=', ')))
+        commandlogged <- 1
+        }
       }
       
       if(method$SEQUENCE$device[nextstep]=='AS'){
@@ -92,11 +93,31 @@ run_method <- function(methodpath, #an absolute path to the method file location
       
       write_serial_connections(serialout, serialconnections)
       
+      #If the command is a PC command, wait to see if the command is finished. Otherwise assume that the command executed and move on. 
       if(errorflag==0){
+        if(method$SEQUENCE$device[nextstep]=='PC'){
+          if(PCdone==0){
+            method$SEQUENCE$completed[nextstep] <- 1
+            commandlogged <-0
+          }
+        }else {
         method$SEQUENCE$completed[nextstep] <- 1
+        commandlogged <- 0
+        }
       }
     }
   
+  
+    if(verbose==1){
+      if(length(serialout)>0){
+      mapply(function(name, reply) {if(nchar(reply)>0){
+        write_log(name, paste('Tx:', name, ' - ', reply))
+      }
+      }, names(serialout), serialout)
+      }
+    }
+    
+    
   Sys.sleep(.01)  
   }
   

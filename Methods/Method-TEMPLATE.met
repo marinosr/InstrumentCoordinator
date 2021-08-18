@@ -28,7 +28,13 @@ GCSOLENOIDPIN = 33
 
 #Header for the CSV, do not delete the following line...
 device, t, command, argument
+AS,0,NOKEEPALIVE             #Disable annoying keepalive messages from Marlin which will appear in verbose logging.
+AS,0,ENABLEPLUNGER
 AS,0, HOME,                  #Home the autosampler
-AS,5, SAMPLE                 #Move to the next sample in the batch table
-AS,7, HOME
-PC,20, PAUSE, 3              #Pause the PC for 3 seconds
+AS,15, SAMPLE                 #Move to the next sample in the batch table
+AS,15, SYRINGEVOL, 1
+AS,15,SYRINGEVOL,0
+AS,15, HOME
+AS, 15, WAITCOMPLETE            #Wait for all moves to finish.
+AS, 15, PRINTREADY              #Tell computer all moves finished
+PC, 15, ASWAITREADY             #Wait for "all moves finished" from AS

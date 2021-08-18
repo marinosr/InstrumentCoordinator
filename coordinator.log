@@ -2,16 +2,17 @@ Instrument Coordinator v.0.1
 by Richard Marinos, 2021
 GNU GPL v.3.0
 _____________________________
-BAK 2021-08-18 09:38:30 :  Initializing serial connections: AS
-BAK 2021-08-18 09:38:30 :  Sequencing backend online.
-GUI 2021-08-18 09:38:32 :  Verbose logging off.
-GUI 2021-08-18 09:38:32 :  Stopped
-GUI 2021-08-18 09:38:33 :  Stopped
-GUI 2021-08-18 09:38:43 :  Start run.
-GUI 2021-08-18 09:38:44 :  Running
-BAK 2021-08-18 09:38:46 :  Running row #1 (ID:1 Name:test1) in position1001 by method ./Methods/Method-TEMPLATE.met
-BAK 2021-08-18 09:39:09 :  Row # 1 complete.
-BAK 2021-08-18 09:39:12 :  Running row #2 (ID:2 Name:test2) in position1002 by method ./Methods/Method-TEMPLATE.met
-GUI 2021-08-18 09:39:12 :  Running
-BAK 2021-08-18 09:39:35 :  Row # 2 complete.
-GUI 2021-08-18 09:39:38 :  Stopped
+BAK 2021-08-18 12:42:17 :  Initializing serial connections: AS
+BAK 2021-08-18 12:42:17 :  Sequencing backend online.
+GUI 2021-08-18 12:42:18 :  Verbose logging off.
+GUI 2021-08-18 12:42:18 :  Stopped
+GUI 2021-08-18 12:42:19 :  Stopped
+GUI 2021-08-18 12:44:42 :  Start run.
+GUI 2021-08-18 12:44:42 :  Running
+BAK 2021-08-18 12:44:44 :  Running row #1 (ID:1 Name:test1) in position1001 by method ./Methods/Method-TEMPLATE.met
+BAK 2021-08-18 12:45:56 :  Row # 1 complete.
+BAK 2021-08-18 12:45:59 :  Running row #2 (ID:2 Name:test2) in position1002 by method ./Methods/Method-TEMPLATE.met
+GUI 2021-08-18 12:46:00 :  Running
+BAK 2021-08-18 12:47:13 :  Row # 2 complete.
+GUI 2021-08-18 12:47:16 :  Stopped
+GUI 2021-08-18 17:05:49 :  Exit

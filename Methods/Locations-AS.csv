@@ -6,5 +6,5 @@ GCINJECTION,,10,0,10,shimadzu injeciton port
 PICARROINJECTION,,20,0,10,picarro injection port
 CARRIERINJECTION,,30,0,10,carrier gas stream injection port
 SAMPLE,0,0,500,0,dummy sample number for testing
-SAMPLE,1001,60,60,20,
-SAMPLE,1002,120,120,20,
+SAMPLE,1001,100,400,20,
+SAMPLE,1002,200,400,20,

@@ -17,12 +17,12 @@ translate_to_AS_gcode <- function(command, locations, sampleposition, method){
       if(dim(locations[locations$argument == command$argument & locations$command == command$command,])[1]>0) {
         coordinates <- locations[locations$argument == command$argument & locations$command == command$command,]
       } else {
-        write_log(paste('Error in translate_to_AS_gcode(): Command/argument combination is not validly specified in locations table:', command$command, ',', command$argument))
+        write_log('BAK',paste('Error in translate_to_AS_gcode(): Command/argument combination is not validly specified in locations table:', command$command, ',', command$argument))
       }
     } else {
       possiblecoordinates <- locations[locations$argument==command$argument]
       if(dim(possiblecoordinates)[1]>1) {
-        write_log(paste('Error in translate_to_AS_gcode(): Multiple locations in lookup table match this command:', command$command, 'and an argument must be specified to pick one.'))
+        write_log('BAK',paste('Error in translate_to_AS_gcode(): Multiple locations in lookup table match this command:', command$command, 'and an argument must be specified to pick one.'))
       } else {
       coordinates <- locations[locations$argument==command$argument]
       }
@@ -35,8 +35,14 @@ translate_to_AS_gcode <- function(command, locations, sampleposition, method){
   } else {
  #If no coordinates retrieved, probably a special command, handled below. 
     serialout <- switch(command$command,
+                        'NOKEEPALIVE' = 'M113 S0',
+                        'ENABLEPLUNGER' = 'M302 P1',
                         'HOME' = 'G28', #standard home command
-                        'SYRINGEVOL' = paste0('G0 E', command$argument*method$MAXSYRINGEVOL/method$MAXSYRINGESTROKE), #Fill syringe with amount of gas specified in argument (this translates it to mm movement)
+                        'SYRINGEVOL' = if(command$argument < method$MAXSYRINGEVOL){paste0('G0 E', command$argument*(method$MAXSYRINGESTROKE/method$MAXSYRINGEVOL))
+                          } else {
+                            write_log('BAK', 'Desired syringe volume exceeds maximum volume!')
+                            return(NULL)
+                          }, #Fill syringe with amount of gas specified in argument (this translates it to mm movement)
                         'WAITCOMPLETE' = 'M400', #Wait till all movements are complete to proceed.
                         'GCSOLENOID' = ifelse(command$argument == 1, paste0('M42 P',method$GCSOLENOIDPIN,' S1'), paste0('M42 P',method$GCSOLENOIDPIN,' S0')), #Toggles solenoid purge valve
                         'PRINTREADY' = 'M118 AS READY\n',
