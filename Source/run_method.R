@@ -89,6 +89,8 @@ run_method <- function(methodpath, #an absolute path to the method file location
       } else if (method$SEQUENCE$device[nextstep]=='PIC') {
       } else if (method$SEQUENCE$device[nextstep]=='EA') {
       } else if (method$SEQUENCE$device[nextstep]=='LIA') {
+        serialout$LIA <- translate_to_LIA_code(method$SEQUENCE[nextstep,])
+        if(is.null(serialout$AS)){errorflag <- 1}
       }
       
       write_serial_connections(serialout, serialconnections)
