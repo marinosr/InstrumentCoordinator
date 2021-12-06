@@ -3,6 +3,7 @@ library(DT)
 library(shinyFiles)
 library(shinyBS)
 library(processx)
+library(serial)
 
 source('./Source/write_log.R')
 

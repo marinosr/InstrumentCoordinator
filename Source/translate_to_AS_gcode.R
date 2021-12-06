@@ -20,11 +20,11 @@ translate_to_AS_gcode <- function(command, locations, sampleposition, method){
         write_log('BAK',paste('Error in translate_to_AS_gcode(): Command/argument combination is not validly specified in locations table:', command$command, ',', command$argument))
       }
     } else {
-      possiblecoordinates <- locations[locations$argument==command$argument]
+      possiblecoordinates <- locations[locations$command==command$command,]
       if(dim(possiblecoordinates)[1]>1) {
         write_log('BAK',paste('Error in translate_to_AS_gcode(): Multiple locations in lookup table match this command:', command$command, 'and an argument must be specified to pick one.'))
       } else {
-      coordinates <- locations[locations$argument==command$argument]
+        coordinates <- locations[locations$command==command$command,]
       }
     }
   }
@@ -38,7 +38,12 @@ translate_to_AS_gcode <- function(command, locations, sampleposition, method){
                         'NOKEEPALIVE' = 'M113 S0',
                         'ENABLEPLUNGER' = 'M302 P1',
                         'HOME' = 'G28', #standard home command
-                        'SYRINGEVOL' = if(command$argument < method$MAXSYRINGEVOL){paste0('G0 E', command$argument*(method$MAXSYRINGESTROKE/method$MAXSYRINGEVOL))
+                        'SYRINGEVOL' = if(command$argument <= method$MAXSYRINGEVOL){
+                          if(command$argument == 0){ #If zero syringe volume is wanted, overstep the zero mark by 1mm (causing motor missed step), then set coords to zero. This is to minimize chance of unpurged volume in syringe. 
+                            print('G0 E1\nG92 E0')
+                          }else{
+                          paste0('G0 E-', command$argument*(method$MAXSYRINGESTROKE/method$MAXSYRINGEVOL)) #Z axis, negative is up. 
+                          }
                           } else {
                             write_log('BAK', 'Desired syringe volume exceeds maximum volume!')
                             return(NULL)

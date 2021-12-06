@@ -16,9 +16,7 @@ GCSOLENOIDPIN=33
 #command = a command to be parsed by run_method()
 #arguments = optional numeric arguments that get used by a particular command
 
-device, t, command, argument
-AS,0,NOKEEPALIVE,             #Disable annoying keepalive messages from Marlin which will appear in verbose logging.
-AS,0,ENABLEPLUNGER,
+#device, t, command, argument
 AS,0, HOME,                  #Home the autosampler
 AS,0, SYRINGEVOL, 0          #Empty syringe if not already done
 AS,0, DILUTION,              #Put needle in dilution gas port
@@ -26,7 +24,7 @@ AS,0, SYRINGEVOL, 2          #Draw 2ml of dilution gas into syringe.
 AS,0, ABOVEDILUTION,         #Lift syringe out of dilution gas port
 AS,0, SYRINGEVOL, 0          #Eject dilution gas (to rinse syringe)
 AS,0, DILUTION,              #Put needle in dilution gas port
-AS,0, SYRINGEVOL, 2        #Draw 2.5ml of dilution gas into syringe.
+AS,0, SYRINGEVOL, 2.5        #Draw 2.5ml of dilution gas into syringe.
 AS,0, SAMPLE,                #Put needle in sample vial (specified by sample list)
 AS,0, SYRINGEVOL, 0          #Inject dilution gas into sample vial.
 AS,0, SYRINGEVOL, 1.5        #Draw 1.5ml of gas back into syringe to mix

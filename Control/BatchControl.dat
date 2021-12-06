@@ -1,2 +1,2 @@
 "BatchFile","LoadBatch","Running","CurrentSample","NextSample","FinishCurrentThenStop","Kill","Error","VerboseLog","ReconnectSerial","Complete","Exit"
-"./Batches/Template.csv",0,0,NA,NA,0,0,0,0,0,1,1
+"C:/Users/Public/InstrumentCoordinator/Batches/STOPGAP_2ml_48ct.csv",0,1,1,NA,0,0,0,1,0,0,1
