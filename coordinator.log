@@ -2,77 +2,24 @@ Instrument Coordinator v.0.1
 by Richard Marinos, 2021
 GNU GPL v.3.0
 _____________________________
-BAK 2021-12-03 12:25:39 :  Initializing serial connections: AS
-BAK 2021-12-03 12:25:39 :  Sequencing backend online.
-GUI 2021-12-03 12:25:41 :  Verbose logging off.
-GUI 2021-12-03 12:25:41 :  Stopped
-GUI 2021-12-03 12:25:42 :  Stopped
-GUI 2021-12-03 12:25:47 :  New batch table loaded at  C:/Users/Public/InstrumentCoordinator/Batches/STOPGAP_2ml_48ct.csv
-GUI 2021-12-03 12:25:47 :  Stopped
-GUI 2021-12-03 12:25:49 :  Start run.
-GUI 2021-12-03 12:25:49 :  Running
-GUI 2021-12-03 12:25:51 :  The option of verbose logging, which provides exquisitely granular detail of all backend activities, has been activated, per a duly executed request by the user, and shall continue until such time as the user requests that it be halted.
-BAK 2021-12-03 12:25:52 :  Running row #1 (ID:1 Name:SG1) in position1001 by method ./Methods/Method-GC_2ml_AtmPress.met
-AS 2021-12-03 12:25:52 :  Rx: AS  -  startMarlin 2.0.9.1
-BAK 2021-12-03 12:25:52 :  AS, 0, NOKEEPALIVE, NA, 0
-AS 2021-12-03 12:25:52 :  Tx: AS  -  M113 S0
-AS 2021-12-03 12:25:52 :  Rx: AS  -  echo: Last Updated: 2021-06-27 | Author: (none, default config)echo:Compiled: Jul 22 2021echo: Free Memory: 5720  PlannerBufferBytes: 1152echo:Hardcoded Default Settings Loadedecho:  G21    ; Units in mm (mm)
-BAK 2021-12-03 12:25:52 :  AS, 0, ENABLEPLUNGER, NA, 0
-AS 2021-12-03 12:25:52 :  Tx: AS  -  M302 P1
-AS 2021-12-03 12:25:52 :  Rx: AS  -  echo:; Filament settings: Disabledecho:  M200 S0 D1.75echo:; Steps per unit:echo: M92 X114.00 Y114.00 Z400.00 E400.00echo:; Maximum feedrates (units/s):echo:  M203 X300.00 Y300.00 Z2.00 E30.00echo:; Maximum Acceleration (units/s2):echo:  M201 X300.00 Y300.00 Z300.00 E300.00echo:; Acceleration (units/s2): P<print_accel> R<retract_accel> T<travel_accel>echo:  M204 P300.00 R300.00 T300.00echo:; Advanced: B<min_segment_time_us> S<min_feedrate> T<min_travel_feedrate> J<junc_dev>echo:  M205 B20000.00 S0.00 T0.00 J0.01echo:; Home offset:echo:  M206 X0.00 Y0.00 Z0.00; Endstop adjustment:echo:  M666 Y0.00echo:; PID settings:echo:  M301 P22.20 I1.08 D114.00okok
-BAK 2021-12-03 12:25:52 :  AS, 0, HOME, NA, 0
-AS 2021-12-03 12:25:52 :  Tx: AS  -  G28
-BAK 2021-12-03 12:25:52 :  AS, 0, SYRINGEVOL, 0, 0
-AS 2021-12-03 12:25:52 :  Tx: AS  -  G0 E0
-BAK 2021-12-03 12:25:52 :  AS, 0, DILUTION, NA, 0
-AS 2021-12-03 12:25:52 :  Tx: AS  -  G0 Z0
-G0 X0 Y0
-G0 Z3
-BAK 2021-12-03 12:25:52 :  AS, 0, SYRINGEVOL, 2, 0
-AS 2021-12-03 12:25:52 :  Tx: AS  -  G0 E50
-BAK 2021-12-03 12:25:52 :  AS, 0, ABOVEDILUTION, NA, 0
-AS 2021-12-03 12:25:52 :  Tx: AS  -  G0 Z0
-G0 X15 Y25
-G0 Z0
-BAK 2021-12-03 12:25:52 :  AS, 0, SYRINGEVOL, 0, 0
-AS 2021-12-03 12:25:52 :  Tx: AS  -  G0 E0
-BAK 2021-12-03 12:25:52 :  AS, 0, DILUTION, NA, 0
-AS 2021-12-03 12:25:52 :  Tx: AS  -  G0 Z0
-G0 X0 Y0
-G0 Z3
-BAK 2021-12-03 12:25:52 :  AS, 0, SYRINGEVOL, 2, 0
-AS 2021-12-03 12:25:52 :  Tx: AS  -  G0 E50
-BAK 2021-12-03 12:25:52 :  AS, 0, SAMPLE, NA, 0
-AS 2021-12-03 12:25:52 :  Tx: AS  -  G0 Z0
-G0 X0 Y85
-G0 Z40
-BAK 2021-12-03 12:25:52 :  AS, 0, SYRINGEVOL, 0, 0
-AS 2021-12-03 12:25:52 :  Tx: AS  -  G0 E0
-BAK 2021-12-03 12:25:52 :  AS, 0, SYRINGEVOL, 1.5, 0
-AS 2021-12-03 12:25:52 :  Tx: AS  -  G0 E37.5
-BAK 2021-12-03 12:25:52 :  AS, 0, SYRINGEVOL, 0, 0
-AS 2021-12-03 12:25:52 :  Tx: AS  -  G0 E0
-BAK 2021-12-03 12:25:52 :  AS, 0, SYRINGEVOL, 1.5, 0
-AS 2021-12-03 12:25:52 :  Tx: AS  -  G0 E37.5
-BAK 2021-12-03 12:25:52 :  AS, 0, SYRINGEVOL, 0, 0
-AS 2021-12-03 12:25:52 :  Tx: AS  -  G0 E0
-BAK 2021-12-03 12:25:52 :  AS, 0, SYRINGEVOL, 2, 0
-AS 2021-12-03 12:25:52 :  Tx: AS  -  G0 E50
-BAK 2021-12-03 12:25:52 :  AS, 0, GCINJECTION, NA, 0
-AS 2021-12-03 12:25:52 :  Tx: AS  -  G0 Z0
-G0 X10 Y0
-G0 Z10
-BAK 2021-12-03 12:25:52 :  AS, 0, SYRINGEVOL, 0, 0
-AS 2021-12-03 12:25:52 :  Tx: AS  -  G0 E0
-BAK 2021-12-03 12:25:52 :  AS, 0, WAITCOMPLETE, NA, 0
-AS 2021-12-03 12:25:52 :  Tx: AS  -  M400
-BAK 2021-12-03 12:25:52 :  AS, 0, PRINTREADY, NA, 0
-AS 2021-12-03 12:25:52 :  Tx: AS  -  M118 AS READY
-
-BAK 2021-12-03 12:25:52 :  PC, 0, ASWAITREADY, NA, 0
-GUI 2021-12-03 12:25:52 :  Running
-AS 2021-12-03 12:26:21 :  Rx: AS  -  X:0.00 Y:0.00 Z:5.00 E:0.00 Count X:0 Y:0 Z:2000okokokok
-AS 2021-12-03 12:26:21 :  Rx: AS  -  okokokokokokokok
-AS 2021-12-03 12:26:21 :  Rx: AS  -  okokokokokokok
-GUI 2021-12-03 12:27:52 :  Exit
-GUI 2021-12-03 12:27:52 :  Exit
+BAK 2021-12-13 15:03:55 :  Initializing serial connections: AS
+BAK 2021-12-13 15:03:55 :  Sequencing backend online.
+GUI 2021-12-13 15:03:56 :  Verbose logging off.
+GUI 2021-12-13 15:03:56 :  Stopped
+GUI 2021-12-13 15:03:57 :  Stopped
+GUI 2021-12-13 15:03:59 :  New batch table loaded at  C:/Users/Public/InstrumentCoordinator/Batches/STOPGAP_2ml_48ct.csv
+GUI 2021-12-13 15:04:00 :  Stopped
+GUI 2021-12-13 15:04:01 :  Stopped
+GUI 2021-12-13 15:04:09 :  Open batch table for editing. WARNING: Do NOT edit any timestamped samples (running/already run samples.)
+GUI 2021-12-13 15:04:10 :  Stopped
+GUI 2021-12-13 15:04:24 :  Start run.
+GUI 2021-12-13 15:04:24 :  Running
+BAK 2021-12-13 15:04:26 :  Running row #1 (ID:1 Name:SG1) in position1012 by method ./Methods/Method-GC_2ml_Overpressure.met
+BAK 2021-12-13 15:06:40 :  CRASHED ON ERROR: Error: [tcl] error reading "file15246790": permission denied.
+BAK 2021-12-13 15:06:40 :  CRASHED ON ERROR: In addition: Warning messages:
+BAK 2021-12-13 15:06:40 :  CRASHED ON ERROR: 1: In read.table(file = file, header = header, sep = sep, quote = quote,  :
+BAK 2021-12-13 15:06:40 :  CRASHED ON ERROR:   incomplete final line found by readTableHeader on './Control/BatchControl.dat'
+BAK 2021-12-13 15:06:40 :  CRASHED ON ERROR: 2: In FUN(X[[i]], ...) : NAs introduced by coercion
+BAK 2021-12-13 15:06:40 :  CRASHED ON ERROR: 3: In FUN(X[[i]], ...) : NAs introduced by coercion
+BAK 2021-12-13 15:06:40 :  CRASHED ON ERROR: Execution halted
+GUI 2021-12-14 14:18:08 :  Exit

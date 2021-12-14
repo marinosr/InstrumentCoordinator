@@ -38,9 +38,10 @@ translate_to_AS_gcode <- function(command, locations, sampleposition, method){
                         'NOKEEPALIVE' = 'M113 S0',
                         'ENABLEPLUNGER' = 'M302 P1',
                         'HOME' = 'G28', #standard home command
+                        'ZEROPLUNGER' = 'G0 E1\nG92 E0',
                         'SYRINGEVOL' = if(command$argument <= method$MAXSYRINGEVOL){
                           if(command$argument == 0){ #If zero syringe volume is wanted, overstep the zero mark by 1mm (causing motor missed step), then set coords to zero. This is to minimize chance of unpurged volume in syringe. 
-                            print('G0 E1\nG92 E0')
+                            print('G0 E0')
                           }else{
                           paste0('G0 E-', command$argument*(method$MAXSYRINGESTROKE/method$MAXSYRINGEVOL)) #Z axis, negative is up. 
                           }

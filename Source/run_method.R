@@ -15,6 +15,8 @@ run_method <- function(methodpath, #an absolute path to the method file location
   samplestatus <- 0
   commandlogged <- 0
   
+  busy <- FALSE
+  
   
   #If autosampler needed, load position coordinate information. 
   if('AS' %in% method$SEQUENCE$device){
@@ -49,6 +51,12 @@ run_method <- function(methodpath, #an absolute path to the method file location
     #Insert code to read and write serial buffers here. 
     serialin <- read_serial_connections(serialconnections)
     
+    if('AS' %in% names(serialin)){
+      if(length(grep("ok", serialin$AS))){
+        busy <- FALSE
+      }
+    }
+    
     #If verbose logging selected, write out any received serial communication to the log.  
     if(verbose==1){
       mapply(function(name, reply) {if(nchar(reply)>0){
@@ -64,6 +72,7 @@ run_method <- function(methodpath, #an absolute path to the method file location
     #Determine index of next step. 
     nextstep <- which(method$SEQUENCE$completed==0)[1]
     #See if it's time to run the next step yet. 
+    if(busy==FALSE){
     if((as.numeric(Sys.time())-starttime) >= method$SEQUENCE$t[nextstep]){
       
       #Write out method line if verbose logging enabled. 
@@ -73,10 +82,10 @@ run_method <- function(methodpath, #an absolute path to the method file location
         commandlogged <- 1
         }
       }
-      
       if(method$SEQUENCE$device[nextstep]=='AS'){
         #Formulate gcode command to send to AS
         serialout$AS <- translate_to_AS_gcode(command = method$SEQUENCE[nextstep,], locations=locations, sampleposition=sampleposition, method=method)
+        busy <- TRUE
         #If translate_to_AS_gcode() fails, it should return NULL.
         if(is.null(serialout$AS)){errorflag <- 1}
       } else if(method$SEQUENCE$device[nextstep]=='PC'){
@@ -108,7 +117,7 @@ run_method <- function(methodpath, #an absolute path to the method file location
         }
       }
     }
-  
+    }
   
     if(verbose==1){
       if(length(serialout)>0){

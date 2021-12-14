@@ -1,0 +1,7 @@
+Error: [tcl] error reading "file15246790": permission denied.
+In addition: Warning messages:
+1: In read.table(file = file, header = header, sep = sep, quote = quote,  :
+  incomplete final line found by readTableHeader on './Control/BatchControl.dat'
+2: In FUN(X[[i]], ...) : NAs introduced by coercion
+3: In FUN(X[[i]], ...) : NAs introduced by coercion
+Execution halted

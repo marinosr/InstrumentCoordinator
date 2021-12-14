@@ -1,0 +1,42 @@
+#Autosampler sequence for providing 2ml sample from vials @ overpressure.
+
+
+***SETUP***
+METHODNAME=2ml GC Injection with vials at atmospheric pressure. (2.5 ml dilution gas added.)
+MAXSYRINGEVOL=2 #ml
+MAXSYRINGESTROKE=50 #mm
+LOCATIONS=./Methods/Locations-AS.csv #XYZ coordinates of positional commands
+GCSOLENOIDPIN=33
+
+***SEQUENCE***
+#Devices = AS (autosampler), PC (tell computer running this code to do a task)
+#t = time in seconds, if all set to 0 events will happen as fast as possible
+#command = a command to be parsed by run_method()
+#arguments = optional numeric arguments that get used by a particular command
+
+device, t, command, argument
+AS,1, NOKEEPALIVE,           #Disable annoying keepalive messages from Marlin which will appear in verbose logging.
+AS,2, ENABLEPLUNGER,
+AS,3, ZEROPLUNGER,
+AS,4, HOME,                  #Home the autosampler
+AS,5, SYRINGEVOL, 0          #Empty syringe if not already done
+AS,6, DILUTION,              #Put needle in dilution gas port
+AS,7, SYRINGEVOL, 2          #Draw 2ml of dilution gas into syringe.
+AS,8, ABOVEDILUTION,         #Lift syringe out of dilution gas port
+AS,9, SYRINGEVOL, 0          #Eject dilution gas (to rinse syringe)
+AS,9, WAITCOMPLETE,
+AS,10, SAMPLE,                #Put needle in sample vial (specified by sample list)
+AS,11, SYRINGEVOL, 1.5        #Draw 1.5ml of gas back into syringe to mix
+AS,12, SYRINGEVOL, 0          #Push back into vial.
+AS,13, SYRINGEVOL, 2          #Draw up final sample.
+AS,14, ABOVEGCINJECTION       #Move syringe to above GC injection port.
+AS,15, GCINJECTION,           #Plunge syringe into injection septum.
+AS,16, SYRINGEVOL, 0          #Inject sample
+AS,17, WAITCOMPLETE,          #Give autosampler command to wait for all moves to complete
+AS,18, ABOVEGCINJECTION       #Move syringe to above GC injection port.
+AS,19, PRINTREADY,            #Send command to computer that sample is ready for analysis
+PC,20, ASWAITREADY,           #Wait for ready signal from autosampler
+SHM,21, GCSTART,              #Control Shimadzu software to start run
+PC,22, PAUSE, 3               #Pause 3s for GC to switch to inject position
+AS,23, BACKHOME,              #Move sample needle out of the way. 
+PC,24, PAUSE, 1080	      #wait 18 minutes for run to complete

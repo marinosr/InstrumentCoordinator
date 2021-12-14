@@ -19,6 +19,7 @@ GCSOLENOIDPIN=33
 device, t, command, argument
 AS,0,NOKEEPALIVE,             #Disable annoying keepalive messages from Marlin which will appear in verbose logging.
 AS,0,ENABLEPLUNGER,
+AS,0, ZEROPLUNGER,
 AS,0, HOME,                  #Home the autosampler
 AS,0, SYRINGEVOL, 0          #Empty syringe if not already done
 AS,0, DILUTION,              #Put needle in dilution gas port
