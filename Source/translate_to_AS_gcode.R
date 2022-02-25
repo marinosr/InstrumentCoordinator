@@ -1,4 +1,9 @@
 translate_to_AS_gcode <- function(command, locations, sampleposition, method){
+
+#This is a kludge from when command$argument was always numeric.Necessary for lookup/comparisons below. 
+if(!is.na(as.numeric(command$argument))){
+      command$argument <- as.numeric(command$argument)
+}
   
   #lookup x y z coordinates (if necessary)
   
@@ -7,13 +12,13 @@ translate_to_AS_gcode <- function(command, locations, sampleposition, method){
   
   #If sample is specified but no position specified in argument, go to the present sample position identified by run_method()
   #This allows for a method to specify another sample to draw from besides the main one to be run, e.g. for a spike that needs to be added. 
-  if(command$command=='SAMPLE' & is.na(command$argument)){
+  if(command$command=='SAMPLE' & (is.na(command$argument) | command$argument=='')){
     command$argument <- sampleposition
   }
   
   #Match coordinates to command and argument i, or just command if no argument is present in sequence
   if(command$command %in% locations$command){
-    if(!is.na(command$argument)){
+    if(!(is.na(command$argument) | command$argument=='')){
       if(dim(locations[locations$argument == command$argument & locations$command == command$command,])[1]>0) {
         coordinates <- locations[locations$argument == command$argument & locations$command == command$command,]
       } else {
@@ -35,7 +40,9 @@ translate_to_AS_gcode <- function(command, locations, sampleposition, method){
   } else {
  #If no coordinates retrieved, probably a special command, handled below. 
     serialout <- switch(command$command,
+                        'GCODE' = command$argument,
                         'NOKEEPALIVE' = 'M113 S0',
+                        'PAUSE' = paste0('G4 S', command$argument),
                         'ENABLEPLUNGER' = 'M302 P1',
                         'HOME' = 'G28', #standard home command
                         'ZEROPLUNGER' = 'G0 E1\nG92 E0',

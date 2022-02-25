@@ -1,0 +1,4 @@
+Key,Value
+AUTOITPATH,C:/Program Files (x86)/AutoIt3/AutoIt3.exe
+GCWAITREADY,/Methods/SHM-Commands/ShimadzuPollReady.au3
+GCSTART,/Methods/SHM-Commands/ShimadzuStartRun.au3

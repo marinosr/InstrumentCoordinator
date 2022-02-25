@@ -3,7 +3,6 @@ run_method <- function(methodpath, #an absolute path to the method file location
                        sampleposition=0, #Argument used if AS is being used, for sample # lookup. 
                        verbose=0){  #Used if the autosampler has to look up a position.
   
-  
   #Load method.
   method <- parse_method(methodpath)
   if(is.null(method)){ #Return error flag to run_batch() if method can't be parsed. Careful this is silent and very hard to debug.
@@ -16,17 +15,16 @@ run_method <- function(methodpath, #an absolute path to the method file location
   samplestatus <- 0
   commandlogged <- 0
   
-  
   busy <- FALSE
   
   
-  #Load relevant data tables if they are specified in the method. 
-  if("LOCATIONS" %in% names(method)){
+  #If autosampler needed, load position coordinate information. 
+  if('AS' %in% method$SEQUENCE$device){
     locations <- read.csv(method$LOCATIONS, sep=',', strip.white = TRUE, blank.lines.skip=TRUE, comment.char='#')
   }
-  if("AUTOITLOCATIONS" %in% names(method)){
-    AutoItLocations <- read.csv(method$AUTOITLOCATIONS, sep=',', strip.white = TRUE, blank.lines.skip=TRUE, comment.char='#')
-    print(AutoItLocations)
+  
+  if('SHM' %in% method$SEQUENCE$device){
+    AutoItLocations <- read.csv(method$AUTOITSCRIPTS, sep=',', strip.white = TRUE, blank.lines.skip=TRUE, comment.char='#')
   }
   
   #Grab start time, in seconds.
@@ -58,7 +56,7 @@ run_method <- function(methodpath, #an absolute path to the method file location
     serialin <- read_serial_connections(serialconnections)
     
     if('AS' %in% names(serialin)){
-      if(length(grep("ok", serialin$AS))){
+      if(length(grep("ok", serialin$AS))>0){
         busy <- FALSE
       }
     }
@@ -88,26 +86,35 @@ run_method <- function(methodpath, #an absolute path to the method file location
         commandlogged <- 1
         }
       }
+      
+      #Handling for the next method line sending a command to the autosampler. 
       if(method$SEQUENCE$device[nextstep]=='AS'){
         #Formulate gcode command to send to AS
         serialout$AS <- translate_to_AS_gcode(command = method$SEQUENCE[nextstep,], locations=locations, sampleposition=sampleposition, method=method)
         busy <- TRUE
         #If translate_to_AS_gcode() fails, it should return NULL.
         if(is.null(serialout$AS)){errorflag <- 1}
+
+        
+      #Handling for PC tasks done through R. 
       } else if(method$SEQUENCE$device[nextstep]=='PC'){
         PCdone <- handle_PC_task(command = method$SEQUENCE[nextstep,], samplename=samplename, sampleposition=sampleposition, serialin=serialin)
         if(PCdone==0){
         } else if (PCdone==1) {
           errorflag <- 1
         }
+        
+        #Handling for the next method line interfacing with the Shimadzu. 
       } else if (method$SEQUENCE$device[nextstep]=='SHM') {
         autoitpath <- AutoItLocations$Value[AutoItLocations$Key=='AUTOITPATH']
-        autoitscript <- paste0(getwd(), AutoItLocations$Value[AutoItLocations$Key==method$SEQUENCE[nextstep,"command"]])
+        autoitscript <- paste0(getwd(), AutoItLocations$Value[AutoItLocations$Key==method$SEQUENCE[nextstep,command]])
         print(autoitscript)
         processreturn <- processx::run(autoitpath, autoitscript)
         if(!(processreturn$status==0)){
           errorflag <- 1
         }
+      }
+        
       } else if (method$SEQUENCE$device[nextstep]=='PIC') {
       } else if (method$SEQUENCE$device[nextstep]=='EA') {
       } else if (method$SEQUENCE$device[nextstep]=='LIA') {
@@ -130,7 +137,7 @@ run_method <- function(methodpath, #an absolute path to the method file location
         }
       }
     }
-    }
+    
   
     if(verbose==1){
       if(length(serialout)>0){
@@ -140,15 +147,16 @@ run_method <- function(methodpath, #an absolute path to the method file location
       }, names(serialout), serialout)
       }
     }
+
     
     
-  Sys.sleep(.01)  
-  }
+  Sys.sleep(.01)
+  
   
   #If killed by user or error, throw non-zero exit status. 
   if(errorflag == 1) {samplestatus <- 1}
   if(killflag == 1) {samplestatus <- 1}
-  
+  }
   
   return(samplestatus)
 }

@@ -2,24 +2,131 @@ Instrument Coordinator v.0.1
 by Richard Marinos, 2021
 GNU GPL v.3.0
 _____________________________
-BAK 2021-12-13 15:03:55 :  Initializing serial connections: AS
-BAK 2021-12-13 15:03:55 :  Sequencing backend online.
-GUI 2021-12-13 15:03:56 :  Verbose logging off.
-GUI 2021-12-13 15:03:56 :  Stopped
-GUI 2021-12-13 15:03:57 :  Stopped
-GUI 2021-12-13 15:03:59 :  New batch table loaded at  C:/Users/Public/InstrumentCoordinator/Batches/STOPGAP_2ml_48ct.csv
-GUI 2021-12-13 15:04:00 :  Stopped
-GUI 2021-12-13 15:04:01 :  Stopped
-GUI 2021-12-13 15:04:09 :  Open batch table for editing. WARNING: Do NOT edit any timestamped samples (running/already run samples.)
-GUI 2021-12-13 15:04:10 :  Stopped
-GUI 2021-12-13 15:04:24 :  Start run.
-GUI 2021-12-13 15:04:24 :  Running
-BAK 2021-12-13 15:04:26 :  Running row #1 (ID:1 Name:SG1) in position1012 by method ./Methods/Method-GC_2ml_Overpressure.met
-BAK 2021-12-13 15:06:40 :  CRASHED ON ERROR: Error: [tcl] error reading "file15246790": permission denied.
-BAK 2021-12-13 15:06:40 :  CRASHED ON ERROR: In addition: Warning messages:
-BAK 2021-12-13 15:06:40 :  CRASHED ON ERROR: 1: In read.table(file = file, header = header, sep = sep, quote = quote,  :
-BAK 2021-12-13 15:06:40 :  CRASHED ON ERROR:   incomplete final line found by readTableHeader on './Control/BatchControl.dat'
-BAK 2021-12-13 15:06:40 :  CRASHED ON ERROR: 2: In FUN(X[[i]], ...) : NAs introduced by coercion
-BAK 2021-12-13 15:06:40 :  CRASHED ON ERROR: 3: In FUN(X[[i]], ...) : NAs introduced by coercion
-BAK 2021-12-13 15:06:40 :  CRASHED ON ERROR: Execution halted
-GUI 2021-12-14 14:18:08 :  Exit
+BAK 2022-02-24 17:06:08 :  Initializing serial connections: AS
+BAK 2022-02-24 17:06:09 :  Sequencing backend online.
+GUI 2022-02-24 17:06:10 :  Verbose logging off.
+GUI 2022-02-24 17:06:10 :  Stopped
+GUI 2022-02-24 17:06:12 :  Stopped
+GUI 2022-02-24 17:06:16 :  New batch table loaded at  C:/Users/Public/InstrumentCoordinator/Batches/FME_IsotopesandJars_2-24.csv
+GUI 2022-02-24 17:06:17 :  Stopped
+GUI 2022-02-24 17:06:19 :  Stopped
+GUI 2022-02-24 17:07:25 :  Start run.
+GUI 2022-02-24 17:07:26 :  Running
+BAK 2022-02-24 17:07:28 :  Running row #1 (ID:STD1 Name:STD1) in position1001 by method ./Methods/Method-GC_2ml_Overpressure.met
+BAK 2022-02-24 17:08:34 :  Row # 1 complete.
+BAK 2022-02-24 17:08:37 :  Running row #2 (ID:N1.101 Name:N1.101) in position1002 by method ./Methods/Method-GC_2ml_Overpressure.met
+GUI 2022-02-24 17:08:38 :  Running
+BAK 2022-02-24 17:29:43 :  Row # 2 complete.
+BAK 2022-02-24 17:29:46 :  Running row #3 (ID:N1.102 Name:N1.102) in position1003 by method ./Methods/Method-GC_2ml_Overpressure.met
+GUI 2022-02-24 17:29:47 :  Running
+BAK 2022-02-24 17:50:54 :  Row # 3 complete.
+BAK 2022-02-24 17:50:57 :  Running row #4 (ID:N1.103 Name:N1.103) in position1004 by method ./Methods/Method-GC_2ml_Overpressure.met
+GUI 2022-02-24 17:50:57 :  Running
+BAK 2022-02-24 18:12:05 :  Row # 4 complete.
+BAK 2022-02-24 18:12:08 :  Running row #5 (ID:N401 Name:N401) in position1005 by method ./Methods/Method-GC_2ml_Overpressure.met
+GUI 2022-02-24 18:12:09 :  Running
+BAK 2022-02-24 18:33:17 :  Row # 5 complete.
+BAK 2022-02-24 18:33:20 :  Running row #6 (ID:N402 Name:N402) in position1006 by method ./Methods/Method-GC_2ml_Overpressure.met
+GUI 2022-02-24 18:33:21 :  Running
+BAK 2022-02-24 18:54:31 :  Row # 6 complete.
+BAK 2022-02-24 18:54:34 :  Running row #7 (ID:N403 Name:N403) in position1007 by method ./Methods/Method-GC_2ml_Overpressure.met
+GUI 2022-02-24 18:54:35 :  Running
+BAK 2022-02-24 19:15:47 :  Row # 7 complete.
+BAK 2022-02-24 19:15:50 :  Running row #8 (ID:N2001 Name:N2001) in position1008 by method ./Methods/Method-GC_2ml_Overpressure.met
+GUI 2022-02-24 19:15:50 :  Running
+BAK 2022-02-24 19:37:02 :  Row # 8 complete.
+BAK 2022-02-24 19:37:05 :  Running row #9 (ID:N2002 Name:N2002) in position1009 by method ./Methods/Method-GC_2ml_Overpressure.met
+GUI 2022-02-24 19:37:06 :  Running
+BAK 2022-02-24 19:58:20 :  Row # 9 complete.
+BAK 2022-02-24 19:58:23 :  Running row #10 (ID:N2003 Name:N2003) in position1010 by method ./Methods/Method-GC_2ml_Overpressure.met
+GUI 2022-02-24 19:58:24 :  Running
+BAK 2022-02-24 20:19:39 :  Row # 10 complete.
+BAK 2022-02-24 20:19:42 :  Running row #11 (ID:STD2 Name:STD2) in position1011 by method ./Methods/Method-GC_2ml_Overpressure.met
+GUI 2022-02-24 20:19:43 :  Running
+BAK 2022-02-24 20:41:00 :  Row # 11 complete.
+BAK 2022-02-24 20:41:03 :  Running row #12 (ID:Air1.101 Name:Air1.101) in position1012 by method ./Methods/Method-GC_2ml_Overpressure.met
+GUI 2022-02-24 20:41:04 :  Running
+BAK 2022-02-24 21:02:23 :  Row # 12 complete.
+BAK 2022-02-24 21:02:26 :  Running row #13 (ID:Air1.102 Name:Air1.102) in position1013 by method ./Methods/Method-GC_2ml_Overpressure.met
+GUI 2022-02-24 21:02:26 :  Running
+BAK 2022-02-24 21:23:35 :  Row # 13 complete.
+BAK 2022-02-24 21:23:38 :  Running row #14 (ID:Air1.103 Name:Air1.103) in position1014 by method ./Methods/Method-GC_2ml_Overpressure.met
+GUI 2022-02-24 21:23:38 :  Running
+BAK 2022-02-24 21:44:47 :  Row # 14 complete.
+BAK 2022-02-24 21:44:50 :  Running row #15 (ID:Air401 Name:Air401) in position1015 by method ./Methods/Method-GC_2ml_Overpressure.met
+GUI 2022-02-24 21:44:50 :  Running
+BAK 2022-02-24 22:06:01 :  Row # 15 complete.
+BAK 2022-02-24 22:06:04 :  Running row #16 (ID:Air402 Name:Air402) in position1016 by method ./Methods/Method-GC_2ml_Overpressure.met
+GUI 2022-02-24 22:06:04 :  Running
+BAK 2022-02-24 22:27:14 :  Row # 16 complete.
+BAK 2022-02-24 22:27:17 :  Running row #17 (ID:Air403 Name:Air403) in position1017 by method ./Methods/Method-GC_2ml_Overpressure.met
+GUI 2022-02-24 22:27:18 :  Running
+BAK 2022-02-24 22:48:27 :  Row # 17 complete.
+BAK 2022-02-24 22:48:30 :  Running row #18 (ID:Air2001 Name:Air2001) in position1018 by method ./Methods/Method-GC_2ml_Overpressure.met
+GUI 2022-02-24 22:48:31 :  Running
+BAK 2022-02-24 23:09:43 :  Row # 18 complete.
+BAK 2022-02-24 23:09:46 :  Running row #19 (ID:Air2002 Name:Air2002) in position1019 by method ./Methods/Method-GC_2ml_Overpressure.met
+GUI 2022-02-24 23:09:46 :  Running
+BAK 2022-02-24 23:30:59 :  Row # 19 complete.
+BAK 2022-02-24 23:31:02 :  Running row #20 (ID:Air2003 Name:Air2003) in position1020 by method ./Methods/Method-GC_2ml_Overpressure.met
+GUI 2022-02-24 23:31:03 :  Running
+BAK 2022-02-24 23:52:16 :  Row # 20 complete.
+BAK 2022-02-24 23:52:19 :  Running row #21 (ID:STD3Jars Name:STD3Jars) in position1021 by method ./Methods/Method-GC_2ml_Overpressure.met
+GUI 2022-02-24 23:52:19 :  Running
+BAK 2022-02-25 00:13:34 :  Row # 21 complete.
+BAK 2022-02-25 00:13:37 :  Running row #22 (ID:STD4Jars Name:STD4Jars) in position1022 by method ./Methods/Method-GC_2ml_Overpressure.met
+GUI 2022-02-25 00:13:38 :  Running
+BAK 2022-02-25 00:34:54 :  Row # 22 complete.
+BAK 2022-02-25 00:34:57 :  Running row #23 (ID:Aerobic1 Name:Aerobic1) in position1023 by method ./Methods/Method-GC_2ml_Overpressure.met
+GUI 2022-02-25 00:34:57 :  Running
+BAK 2022-02-25 00:56:15 :  Row # 23 complete.
+BAK 2022-02-25 00:56:18 :  Running row #24 (ID:Aerobic2 Name:Aerobic2) in position1024 by method ./Methods/Method-GC_2ml_Overpressure.met
+GUI 2022-02-25 00:56:19 :  Running
+BAK 2022-02-25 01:17:38 :  Row # 24 complete.
+BAK 2022-02-25 01:17:41 :  Running row #25 (ID:Aerobic3 Name:Aerobic3) in position1025 by method ./Methods/Method-GC_2ml_Overpressure.met
+GUI 2022-02-25 01:17:42 :  Running
+BAK 2022-02-25 01:38:51 :  Row # 25 complete.
+BAK 2022-02-25 01:38:54 :  Running row #26 (ID:STD5Jars Name:STD5Jars) in position1026 by method ./Methods/Method-GC_2ml_Overpressure.met
+GUI 2022-02-25 01:38:55 :  Running
+BAK 2022-02-25 02:00:05 :  Row # 26 complete.
+BAK 2022-02-25 02:00:08 :  Running row #27 (ID:Anaerobic1 Name:Anaerobic1) in position1027 by method ./Methods/Method-GC_2ml_Overpressure.met
+GUI 2022-02-25 02:00:08 :  Running
+BAK 2022-02-25 02:21:19 :  Row # 27 complete.
+BAK 2022-02-25 02:21:22 :  Running row #28 (ID:Anaerobic2 Name:Anaerobic2) in position1028 by method ./Methods/Method-GC_2ml_Overpressure.met
+GUI 2022-02-25 02:21:22 :  Running
+BAK 2022-02-25 02:42:34 :  Row # 28 complete.
+BAK 2022-02-25 02:42:37 :  Running row #29 (ID:Anaerobic3 Name:Anaerobic3) in position1029 by method ./Methods/Method-GC_2ml_Overpressure.met
+GUI 2022-02-25 02:42:37 :  Running
+BAK 2022-02-25 03:03:49 :  Row # 29 complete.
+GUI 2022-02-25 03:03:53 :  Stopped
+BAK 2022-02-25 12:09:50 :  The timestamp for the final sample in the completed batch could not be written. Was the CSV open?
+BAK 2022-02-25 12:09:53 :  The timestamp for the final sample in the completed batch could not be written. Was the CSV open?
+BAK 2022-02-25 12:09:56 :  The timestamp for the final sample in the completed batch could not be written. Was the CSV open?
+BAK 2022-02-25 12:09:59 :  The timestamp for the final sample in the completed batch could not be written. Was the CSV open?
+BAK 2022-02-25 12:10:02 :  The timestamp for the final sample in the completed batch could not be written. Was the CSV open?
+BAK 2022-02-25 12:10:05 :  The timestamp for the final sample in the completed batch could not be written. Was the CSV open?
+BAK 2022-02-25 12:10:09 :  The timestamp for the final sample in the completed batch could not be written. Was the CSV open?
+BAK 2022-02-25 12:10:12 :  The timestamp for the final sample in the completed batch could not be written. Was the CSV open?
+BAK 2022-02-25 12:10:15 :  The timestamp for the final sample in the completed batch could not be written. Was the CSV open?
+BAK 2022-02-25 12:10:18 :  The timestamp for the final sample in the completed batch could not be written. Was the CSV open?
+BAK 2022-02-25 12:10:21 :  The timestamp for the final sample in the completed batch could not be written. Was the CSV open?
+BAK 2022-02-25 12:10:24 :  The timestamp for the final sample in the completed batch could not be written. Was the CSV open?
+BAK 2022-02-25 12:10:27 :  The timestamp for the final sample in the completed batch could not be written. Was the CSV open?
+BAK 2022-02-25 12:10:30 :  The timestamp for the final sample in the completed batch could not be written. Was the CSV open?
+BAK 2022-02-25 12:10:34 :  The timestamp for the final sample in the completed batch could not be written. Was the CSV open?
+BAK 2022-02-25 12:10:37 :  The timestamp for the final sample in the completed batch could not be written. Was the CSV open?
+BAK 2022-02-25 12:10:40 :  The timestamp for the final sample in the completed batch could not be written. Was the CSV open?
+BAK 2022-02-25 12:10:43 :  The timestamp for the final sample in the completed batch could not be written. Was the CSV open?
+BAK 2022-02-25 12:10:46 :  The timestamp for the final sample in the completed batch could not be written. Was the CSV open?
+BAK 2022-02-25 12:10:49 :  The timestamp for the final sample in the completed batch could not be written. Was the CSV open?
+BAK 2022-02-25 12:10:52 :  The timestamp for the final sample in the completed batch could not be written. Was the CSV open?
+BAK 2022-02-25 12:10:55 :  The timestamp for the final sample in the completed batch could not be written. Was the CSV open?
+BAK 2022-02-25 12:10:58 :  The timestamp for the final sample in the completed batch could not be written. Was the CSV open?
+BAK 2022-02-25 12:11:01 :  The timestamp for the final sample in the completed batch could not be written. Was the CSV open?
+BAK 2022-02-25 12:11:05 :  The timestamp for the final sample in the completed batch could not be written. Was the CSV open?
+BAK 2022-02-25 12:11:08 :  The timestamp for the final sample in the completed batch could not be written. Was the CSV open?
+BAK 2022-02-25 12:11:11 :  The timestamp for the final sample in the completed batch could not be written. Was the CSV open?
+BAK 2022-02-25 12:11:14 :  The timestamp for the final sample in the completed batch could not be written. Was the CSV open?
+BAK 2022-02-25 12:11:17 :  The timestamp for the final sample in the completed batch could not be written. Was the CSV open?
+GUI 2022-02-25 12:11:20 :  Exit
+BAK 2022-02-25 12:11:20 :  The timestamp for the final sample in the completed batch could not be written. Was the CSV open?

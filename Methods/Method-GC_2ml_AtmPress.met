@@ -6,7 +6,7 @@
 ***SETUP***
 METHODNAME=2ml GC Injection with vials at atmospheric pressure. (2.5 ml dilution gas added.)
 MAXSYRINGEVOL=2 #ml
-MAXSYRINGESTROKE=50 #mm
+MAXSYRINGESTROKE=60 #mm
 LOCATIONS=./Methods/Locations-AS.csv #XYZ coordinates of positional commands
 GCSOLENOIDPIN=33
 

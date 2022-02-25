@@ -1,0 +1,1 @@
+WinWait("Start Data Acquisition")

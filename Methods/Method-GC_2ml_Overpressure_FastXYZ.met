@@ -16,7 +16,7 @@ GCSOLENOIDPIN=33
 #arguments = optional numeric arguments that get used by a particular command
 
 device, t, command, argument
-AS, 0, GCODE, M203 Z10 E30
+AS, 0, GCODE, M203 Z10
 AS,1, NOKEEPALIVE,            #Disable annoying keepalive messages from Marlin which will appear in verbose logging.
 AS,2, ENABLEPLUNGER,          #Enable plunger movement.
 AS,3, ZEROPLUNGER,            #Make sure plunger is at zero point. 
@@ -27,11 +27,11 @@ AS,7, SYRINGEVOL, 2           #Draw 2ml of atmospheric rinse into the syringe
 AS,9, SYRINGEVOL, 0           #Eject rinse gas
 AS,9, WAITCOMPLETE,           #Wait for all moves to complete.
 AS,10, SAMPLE,                #Put needle in sample vial (specified by sample list)
-AS,11, SYRINGEVOL, .5         #Draw 0.5ml of gas into syringe to mix
-AS,11, PAUSE, 3               #Give 3 secs for pressure equalization
+AS,11, SYRINGEVOL, 1.5        #Draw 1.5ml of gas into syringe to mix
+AS,11, PAUSE, 5               #Give 3 secs for pressure equalization
 AS,12, SYRINGEVOL, 0          #Push back into vial.
 AS,13, SYRINGEVOL, 2.5        #Draw up final sample.
-AS,11,PAUSE, 10                #Give 6 secs to let pressure equalize in the needle.
+AS,11,PAUSE, 15                #Give 6 secs to let pressure equalize in the needle.
 AS,14, ABOVEGCINJECTION,       #Move syringe to above GC injection port.
 AS,15, GCINJECTION,           #Plunge syringe into injection septum.
 AS,16, SYRINGEVOL, 0          #Inject sample
