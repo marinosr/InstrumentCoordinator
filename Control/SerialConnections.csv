@@ -1,4 +1,4 @@
 name, port, mode, testcommand, testresponse,,
 AS,COM4,"250000,n,8,1", 'M118 AS present', 'AS present',,
-LIA,COM10,"9600,n,8,1", 'R', 'Liaison ready.',,
+LIA,COM11,"9600,n,8,1", 'R', 'Liaison ready.',,
 'IGA', 'COM11'," ""250000",n,8,"1"""," ""?"""

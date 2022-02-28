@@ -1,0 +1,25 @@
+#Autosampler sequence for providing 2ml sample from vials @ overpressure.
+
+
+***SETUP***
+METHODNAME=2.5 ml GC injection with vials at overpressure.
+MAXSYRINGEVOL=2.5              #ml
+MAXSYRINGESTROKE=50          #mm
+LOCATIONS=./Methods/AS-Locations/AS-Locations.csv                   #XYZ coordinates of positional commands
+AUTOITLOCATIONS=./Methods/SHM-Commands/ShimadzuPaths.csv  #Paths for PC automation scripts. 
+GCSOLENOIDPIN=33
+
+***SEQUENCE***
+#Devices = AS (autosampler), PC (tell computer running this code to do a task), SHM (use shimadzu software to do something)
+#t = time in seconds, if all set to 0 events will happen as fast as possible
+#command = a command to be parsed by run_method()
+#arguments = optional numeric arguments that get used by a particular command
+
+device, t, command, argument
+SHM,18, GCSTART,              #Control Shimadzu software to start run
+
+
+
+
+
+
